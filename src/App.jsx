@@ -5,13 +5,13 @@ import MenuConfirmation from './pages/MenuConfirmation';
 import StepsDetail from './pages/StepsDetail'
 import React from 'react';
 
-import './style/index.css';
-import './style/header.css';
-import './style/home.css';
-import './style/protoGanttChart.css';
-import './style/menuConfirmation.css';
-import './style/stepsDetail.css';
-import './style/footer.css';
+import './styles/index.css';
+import './styles/header.css';
+import './styles/home.css';
+import './styles/protoGanttChart.css';
+import './styles/menuConfirmation.css';
+import './styles/stepsDetail.css';
+import './styles/footer.css';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
