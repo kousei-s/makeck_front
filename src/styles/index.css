@@ -21,7 +21,7 @@
 /* メイン */
 main {
   /* 外余白 */
-  padding: 4%;
+  padding: 7%;
   padding-top: 20%;
   min-height: 100vh;
   background-color: var(--base-color);

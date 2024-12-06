@@ -16,13 +16,6 @@ header {
     z-index: 100;
 }
 
-/* メイン */
-main {
-    /* 外余白 */
-    padding: 7%;
-    padding-top: 20%;
-}  
-
 /* タイトル : ホーム画面以外 */
 #pageTitle {
     font-size: 24px;            /* 文字サイズ */
@@ -39,3 +32,22 @@ main {
     z-index: 100;               /* レイヤー一番上に */
     margin-left: 10px;
 }
+
+/* ヘッダー内要素 (ユーザアイコン、タイトル、ロゴ) */
+header * {
+/* 外余白 */
+    margin-left: 15px;            /* 左 */
+    margin-right: 20px;           /* 右 */
+}
+
+/* ユーザアイコン */
+#userIcon {
+    height: 40px;                 /* 高さ */
+}
+
+/* タイトル : ホーム画面 */
+#appName {
+    font-size: 24px;              /* 文字サイズ */
+    font-family: "Paprika";       /* フォント */
+}
+    
