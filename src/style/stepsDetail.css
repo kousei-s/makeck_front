@@ -1,0 +1,105 @@
+#stepTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 4% auto 10%;
+    padding-bottom: 2%;
+    width: 75%;
+    background-image: url("../assets/images/detailNameBorder.png");
+    background-repeat: no-repeat;
+    background-size: 100% 80%;
+    background-position-y: bottom;
+    justify-content: center;
+}
+
+#stepNumber {
+    color: var(--main-color);
+    height: fit-content;
+    width: fit-content;
+    padding: 0 5%;
+    background-color: var(--base-color);
+    margin: auto;
+}
+
+#stepName {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#stepDetailContainer{
+    background-color: aliceblue;
+}
+
+/* カテゴリ名 */
+.captionText {
+    margin-left: 1rem;
+    height: 15%;
+    font-size: 20px;                    /* 文字サイズ */ 
+    display: flex;                      /* フレックスコンテナ */
+    align-items: center;                /* 子要素配置 : 垂直中央 */
+    justify-content: left;              /* 子要素配置 : 水平中央 */
+}
+
+/* 枠線用 */
+.captionBorder {
+    border-bottom:                      /* 枠線 : 下 */
+        2px solid var(--main-color);
+    box-shadow:                         /* 影 */
+    0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.materialList {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    column-gap: 1.5%;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 2% auto 15%;
+}
+
+.material {
+    width: 100%;
+    margin-top: 3%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid rgba(218, 215, 215, 0.7);
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.materialName {
+    width: 70%;
+    text-align: left;
+}
+
+.quantity {
+    width: 30%;
+    text-align: right;
+}
+
+#method {
+    margin: 6% auto 2%;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: rgba(255, 249, 249, 1);
+    border-radius: 20px;
+    box-shadow:                         /* 影 */
+        3px 3px 4px rgba(224, 212, 212, 0.25),
+        -2px -2px 10px rgba(224, 212, 212, 0.25);
+}
+
+.paragraph {
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    margin: 4% 2rem 0;
+}

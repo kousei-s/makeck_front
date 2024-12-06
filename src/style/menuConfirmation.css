@@ -1,0 +1,95 @@
+/* 調理時間ラベル */
+#cookingTime {
+    height: 5.5vh;                       /* 高さ */
+    width: 100%;                        /* 横幅 */
+
+    font-size: 20px;                    /* 文字サイズ */
+    color: var(--accent-color);         /* 文字色 */
+
+    background-color:                   /* 背景色 */
+        rgba(255, 255, 255, 1);
+
+    border-radius: 20px;                /* 角丸め */
+    border:                             /* 枠線 */
+    1px solid rgba(185, 176, 176, 0.6);
+
+
+    box-shadow:                         /* 影 */
+        3px 3px 4px rgba(224, 212, 212, 0.25),
+        -2px -2px 10px rgba(224, 212, 212, 0.25);
+
+    display: flex;                      /* フレックスコンテナ */
+    margin-top: 4%;
+    margin-bottom: 4%;                  /* 外余白 : 下 */
+
+    align-items: center;                /* 子要素配置 : 垂直中央 */
+    justify-content: center;            /* 子要素配置 : 水平中央 */
+}
+
+/* 献立一覧コンテナ */
+#menuListContainer {
+    /* border: 1px rgba(0, 0, 0, 0.322) dotted; */
+    height: 70vh;                        /* 高さ */
+    width: 100%;                        /* 横幅 */
+
+    display: flex;                      /* フレックスコンテナ */
+    flex-wrap: wrap;
+}
+
+/* 各料理 */
+.menuWrapper {
+    width: 50%;
+    height: 45%;
+    margin-bottom: 5%;
+}
+
+.menuWrapper * {
+    margin: auto;
+    width: 90%;
+}
+
+/* カテゴリ名 */
+.category {
+    height: 15%;
+    font-size: 20px;                    /* 文字サイズ */ 
+    display: flex;                      /* フレックスコンテナ */
+    align-items: center;                /* 子要素配置 : 垂直中央 */
+    justify-content: center;            /* 子要素配置 : 水平中央 */
+}
+
+/* 枠線用 */
+.border {
+    border-bottom:                      /* 枠線 : 下 */
+        3px solid var(--main-color);
+    box-shadow:                         /* 影 */
+    0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* メニュー */
+.menu {
+    margin-top: 10%;
+    height: 75%;
+    background-color: rgba(255, 249, 249, 1);
+    box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
+}
+
+.menu * {
+    width: 100%;
+}
+
+/* メニュー名 */
+.menuName {
+    width: fit-content;
+    max-width: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: left;
+    display: flex;                      /* フレックスコンテナ */
+    align-items: center;                /* 子要素配置 : 垂直中央 */
+    text-wrap: wrap;
+}
+
+#naviText {
+    width: 100%;
+    font-size: 16px;                    /* 文字サイズ */
+}

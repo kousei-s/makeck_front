@@ -1,0 +1,68 @@
+footer{
+    display: flex;                /* フレックスコンテナ */
+    align-items: center;          /* 垂直方向 : 中央揃え */
+    justify-content: flex-start;  /* 水平方向 : 右揃え */
+
+    position: fixed; 
+    width: 100vw;
+    height: 7%;
+
+    background-color: var(--base-color);
+    
+    bottom: 0;
+    z-index: 100;
+}
+
+/* 以下 ホーム画面フッター */
+.footerMenu {
+    font-size: 20px;
+    border-top: 1px solid #AD9B9B;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.footerMenu * {
+    margin-left: 10%;
+}
+
+#selectBtn {
+    color: var(--base-color);
+    background-color: var(--main-color);
+    border-right: 1px solid #AD9B9B;
+
+    box-shadow: 
+        inset 2px 2px 8px rgba(48, 39, 21, 0.25),
+        inset -2px -2px 8px rgba(248, 246, 244, 0.25);
+}
+
+#selectBtn * {
+    color: var(--base-color);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.icon {
+    height: 50%;
+    margin-right: 2%;
+}
+
+
+/* 以下 ホーム画面以外のフッター */
+#decisionFooter {
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px -4px 7px rgba(157, 154, 154, 0.25);
+}
+
+#decisionBtn{
+    border-radius: 20px;
+    background-color: var(--main-color);
+    font-size: 20px;
+    width: 60%;
+    height: 80%;
+    box-shadow: 0px 4px 4px rgba(164, 112, 112, 0.25);
+}
