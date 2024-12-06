@@ -30,7 +30,7 @@ export default function RecipeSelection() {
   
 
     return(
-        <div>
+        <div className="App">
 
           {/*ヘッダー*/}
           <header>

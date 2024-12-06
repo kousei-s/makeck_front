@@ -23,7 +23,7 @@ function Home() {
         <div className="selectionMenu">
           <div className="menuTitle">レシピ選択方法</div>
 
-          <button type="button" id="fromFirst" onClick={() => navigate('/fromFirst')}>
+          <button type="button" id="fromFirst" onClick={() => navigate('/RecipeSelection')}>
             <p className="btnText">1からレシピ選択</p>
             <p className="arrow">＞</p>
           </button>
