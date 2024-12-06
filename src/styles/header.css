@@ -1,0 +1,41 @@
+/* ヘッダー */
+header {
+    position: fixed;
+    width: 100vw;                 /* 横幅 */
+    height: 68px;                 /* 高さ */
+
+    background-color:             /* 背景色 */
+        var(--main-color);
+
+    box-shadow:                   /* 影 */
+        0 3px 10px rgba(0, 0, 0, 0.322);
+
+    display: flex;                /* フレックスコンテナ */
+    align-items: center;          /* 垂直方向 : 中央揃え */
+    justify-content: flex-start;  /* 水平方向 : 右揃え */
+    z-index: 100;
+}
+
+/* メイン */
+main {
+    /* 外余白 */
+    padding: 7%;
+    padding-top: 20%;
+}  
+
+/* タイトル : ホーム画面以外 */
+#pageTitle {
+    font-size: 24px;            /* 文字サイズ */
+    position: absolute;         /* 固定配置 */
+    width: 100%;                /* 横幅 */
+    text-align: center;         /* 文字中央揃え */
+    margin: 0 !important;
+    font-weight: 600;           /*文字の太さ*/
+}
+
+/* 戻るボタン */
+.backBtn {
+    font-size: 30px;            /* 文字サイズ */
+    z-index: 100;               /* レイヤー一番上に */
+    margin-left: 10px;
+}
