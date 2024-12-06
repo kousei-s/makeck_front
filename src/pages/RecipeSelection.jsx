@@ -48,6 +48,11 @@ export default function RecipeSelection() {
           </div>
 
           {/*レシピ選択コンテナ*/}
+          <div>
+            
+          </div>
+
+
           <div id="recipeChoiceContainer">
             {
               menus.map((menu,index)=>{
