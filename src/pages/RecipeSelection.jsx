@@ -23,7 +23,31 @@ export default function RecipeSelection() {
     {
       name : "変わり肉じゃが",
       image : images.MeatPotatoes
-    }
+    },
+    {
+      name : "フランクフルトのソテー",
+      image : images.frankfurtSaute
+    },
+    {
+      name : "わかめスープ",
+      image : images.brownSeaweedSoup 
+    },
+    {
+      name : "わかめスープ",
+      image : images.brownSeaweedSoup 
+    },
+    {
+      name : "わかめスープ",
+      image : images.brownSeaweedSoup 
+    },
+    {
+      name : "わかめスープ",
+      image : images.brownSeaweedSoup 
+    },
+    {
+      name : "わかめスープ",
+      image : images.brownSeaweedSoup 
+    },
   ]
 
   
