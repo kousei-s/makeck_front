@@ -4,6 +4,7 @@ import ProtoGanttChart from './pages/ProtoGanttChart';
 import MenuConfirmation from './pages/MenuConfirmation';
 import StepsDetail from './pages/StepsDetail'
 import React from 'react';
+import RecipeSelection from './pages/RecipeSelection'
 
 import './styles/index.css';
 import './styles/header.css';
@@ -12,6 +13,7 @@ import './styles/protoGanttChart.css';
 import './styles/menuConfirmation.css';
 import './styles/stepsDetail.css';
 import './styles/footer.css';
+import './styles/RecipeSelection.css';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -27,6 +29,7 @@ function App() {
           <Route path='/ganttChart' element={<ProtoGanttChart />} />
           <Route path='/menuConfirmation' element={<MenuConfirmation />}></Route>
           <Route path='/stepsDetail' element={<StepsDetail />}></Route>
+          <Route path='/RecipeSelection' element={<RecipeSelection />}></Route>
         </Routes>
       </Router>
     </>

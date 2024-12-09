@@ -18,7 +18,7 @@ export default function RecipeSelection() {
     },
     {
       name : "魚のフルーツ餡かけ",
-      image : images.FishFruit
+      image : images.fishFruitAnkake
     },
     {
       name : "変わり肉じゃが",

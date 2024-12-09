@@ -13,6 +13,9 @@ const images = {
     frankfurtSaute : './src/assets/images/frankfurtSaute.png',    // フランクフルトのソテー
     coconutMilkJelly : './src/assets/images/coconutMilkJelly.png',// ココナッツミルクゼリー
     brownSeaweedSoup : './src/assets/images/brownSeaweedSoup.png',// わかめスープ
+    FriedChicken : "./src/assets/images/FriedChicken.png",        //田舎風鶏のから揚げ
+    fishFruitAnkake : "./src/assets/images/fishFruitAnkake.png",  //魚のフルーツあんかけ
+    MeatPotatoes : "./src/assets/images/MeatPotatoes.png",        //変わり肉じゃが
 };
 
 export default images;
