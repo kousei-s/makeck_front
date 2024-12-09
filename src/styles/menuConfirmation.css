@@ -29,7 +29,7 @@
 /* 献立一覧コンテナ */
 #menuListContainer {
     /* border: 1px rgba(0, 0, 0, 0.322) dotted; */
-    height: 70vh;                        /* 高さ */
+    height: 60vh;                        /* 高さ */
     width: 100%;                        /* 横幅 */
 
     display: flex;                      /* フレックスコンテナ */
@@ -40,7 +40,7 @@
 .menuWrapper {
     width: 50%;
     height: 45%;
-    margin-bottom: 5%;
+    margin-bottom: 2vh;
 }
 
 .menuWrapper * {
@@ -72,6 +72,7 @@
     height: 75%;
     background-color: rgba(255, 249, 249, 1);
     box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
+    margin-top: 7% !important;
 }
 
 .menu * {
