@@ -51,10 +51,11 @@
 /* カテゴリ名 */
 .category {
     height: 15%;
-    font-size: 20px;                    /* 文字サイズ */ 
+    font-size: 24px;                    /* 文字サイズ */ 
     display: flex;                      /* フレックスコンテナ */
     align-items: center;                /* 子要素配置 : 垂直中央 */
     justify-content: center;            /* 子要素配置 : 水平中央 */
+    font-family: "KaiseiOpti-Medium";
 }
 
 /* 枠線用 */
