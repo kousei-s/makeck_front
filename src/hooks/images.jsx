@@ -25,6 +25,8 @@ const images = {
     FriedChicken : "./src/assets/images/FriedChicken.png",        //田舎風鶏のから揚げ
     fishFruitAnkake : "./src/assets/images/fishFruitAnkake.png",  //魚のフルーツあんかけ
     MeatPotatoes : "./src/assets/images/MeatPotatoes.png",        //変わり肉じゃが
+    asuparaSoup : "./src/assets/images/asuparaSoup.png",          //アスパラガスのスープ
+    
 };
 
 export default images;
