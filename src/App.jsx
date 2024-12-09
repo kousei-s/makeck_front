@@ -1,6 +1,6 @@
 import Home from './pages/Home';
 import FromFirst from './pages/FromFirst';
-import ProtoGanttChart from './pages/ProtoGanttChart';
+import CookProcess from './pages/CookProcess';
 import MenuConfirmation from './pages/MenuConfirmation';
 import StepsDetail from './pages/StepsDetail'
 import React from 'react';
@@ -9,7 +9,7 @@ import RecipeSelection from './pages/RecipeSelection'
 import './styles/index.css';
 import './styles/header.css';
 import './styles/home.css';
-import './styles/protoGanttChart.css';
+import './styles/cookProcess.css';
 import './styles/menuConfirmation.css';
 import './styles/stepsDetail.css';
 import './styles/footer.css';
@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fromFirst" element={<FromFirst />} />
-          <Route path='/ganttChart' element={<ProtoGanttChart />} />
+          <Route path='/cookProcess' element={<CookProcess />} />
           <Route path='/menuConfirmation' element={<MenuConfirmation />}></Route>
           <Route path='/stepsDetail' element={<StepsDetail />}></Route>
           <Route path='/RecipeSelection' element={<RecipeSelection />}></Route>

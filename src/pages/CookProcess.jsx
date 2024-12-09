@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import images from '../hooks/images';
 
-function ProtoGanttChart() {
+function CookProcess() {
     // 画面遷移用フック
     const navigate = useNavigate();
 
@@ -85,4 +85,4 @@ function ProtoGanttChart() {
     )
 }
 
-export default ProtoGanttChart;
+export default CookProcess;
