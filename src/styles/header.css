@@ -4,6 +4,7 @@ header {
     width: 100vw;                 /* 横幅 */
     height: 68px;                 /* 高さ */
 
+    font-family: "KaiseiOpti-Bold";
     background-color:             /* 背景色 */
         var(--main-color);
 

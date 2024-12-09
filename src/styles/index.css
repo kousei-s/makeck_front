@@ -89,3 +89,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@font-face {
+  font-family: 'KaiseiOpti-Bold';
+  src: url('../fonts/KaiseiOpti-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'KaiseiOpti-Medium';
+  src: url('../fonts/KaiseiOpti-Medium.ttf') format('truetype');
+}
