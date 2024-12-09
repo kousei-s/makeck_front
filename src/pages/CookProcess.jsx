@@ -29,7 +29,7 @@ function CookProcess() {
         Array.from({length : 20}, () => n++));
 
     return (
-        <div className='App'>
+        <div className='App noScroll'>
             <header>
                 {/* 戻るボタン */}
                 <div className='backBtn' onClick={() => navigate('/')}>＜</div>
@@ -39,6 +39,15 @@ function CookProcess() {
             <main>
                 <div id='cookingTime'>
                     調理時間目安 : {cookingTime} 分
+                </div>
+                
+                <div id='processCategory'>
+                    <div className='colorBox yellow'></div>
+                    <div>下準備</div>
+                    <div className='colorBox red'></div>
+                    <div>調理</div>
+                    <div className='colorBox green'></div>
+                    <div>仕上げ</div>
                 </div>
                 
                 {/* 献立画像コンテナ */}
