@@ -19,7 +19,6 @@
 
     display: flex;                      /* フレックスコンテナ */
 
-    margin-bottom: 2%;
     align-items: center;                /* 子要素配置 : 垂直中央 */
     justify-content: center;            /* 子要素配置 : 水平中央 */
 }
@@ -27,14 +26,34 @@
 #processCategory {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
+#processCategory div {
+    margin-right: 3%;
+}
 .colorBox {
-    content: "";
+    width: 2vh;
+    height: 2vh;
+    margin-left: 2%;
 }
 
 
+
+.yellow {
+    background-color: var(--chart-yellow);
+}
+
+.red {
+    background-color: var(--chart-red);
+}
+
+.green {
+    background-color: var(--chart-green);
+}
 
 /* カテゴリ、ガントチャートを内包するコンテナ */
 .grid {
