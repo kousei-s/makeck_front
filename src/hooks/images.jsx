@@ -7,6 +7,15 @@ const images = {
     book : './src/assets/images/book.png',                // 本
     share : './src/assets/images/share.png',              // 共有
     detailBorder : './src/assets/images/detailNameBorder.png',// 手順詳細名飾り枠
+    
+    //レシピ選択画面(RecipeSelection)
+    recipeAddButton : "./src/assets/images/recipeAddButton.png",//レシピ追加ボタン
+    selectStapleFood : "./src/assets/images/selectStapleFood.png",//主食
+    selectMainDish : "./src/assets/images/selectMainDish.png",    //主菜
+    selectSideDish : "./src/assets/images/selectSideDish.png",    //副菜
+    selectSoup : "./src/assets/images/selectSoup.png",            //汁物
+
+
 
     // テスト用画像
     squidRisotto : './src/assets/images/squidRisotto.png',        // 烏賊のリゾット
