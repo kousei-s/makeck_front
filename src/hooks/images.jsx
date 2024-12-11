@@ -2,8 +2,8 @@ const images = {
     icon : './src/assets/images/userIcon.png',            // ユーザアイコン
     logo : './src/assets/images/logo.png',                // ロゴ
     someImage : './src/assets/images/someImage.png',      // 仮画像
-    pot : './src/assets/images/pot.png',                  // 鍋
-    mixer : './src/assets/images/mixer.png',              // ミキサー
+    //pot : './src/assets/images/pot.png',                  // 鍋
+    //mixer : './src/assets/images/mixer.png',              // ミキサー
     book : './src/assets/images/book.png',                // 本
     share : './src/assets/images/share.png',              // 共有
     detailBorder : './src/assets/images/detailNameBorder.png',// 手順詳細名飾り枠
@@ -14,6 +14,7 @@ const images = {
     selectMainDish : "./src/assets/images/selectMainDish.png",    //主菜
     selectSideDish : "./src/assets/images/selectSideDish.png",    //副菜
     selectSoup : "./src/assets/images/selectSoup.png",            //汁物
+    selectingRecipeButton :"./src/assets/images/selectingRecipeButton.png",//上向き三角のボタン
 
 
 
