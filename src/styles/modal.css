@@ -1,13 +1,16 @@
 /* レシピ選択中モーダル */
 .modal_bottom {
-    width: auto;
-    height: 55px;
-    background-color: #F8F5F2;
-    border-radius: 20px 20px 0 0;   /*左上と右上の角を丸くする*/
-    box-shadow: 0 -6px 6px rgba(0, 0, 0, 0.25);
+    position: fixed;                /*モーダル固定*/
+    bottom: -2px;                      /*モーダル固定*/
+    width: 100%;                    /*横幅*/
+    height: 55px;                   /*高さ*/
+    background-color: var(--base-color);    /*背景色*/
+    border-radius: 20px 20px 0 0;   /*左上と右上の角丸*/
+    box-shadow: 0 -6px 6px rgba(0, 0, 0, 0.25); /*閉状態の影*/
     display: flex;
     align-items: center;            /*垂直中央*/
     justify-content: center;        /*水平中央*/
+    z-index: 100;
     
 }
 
