@@ -39,7 +39,7 @@ function MenuConfirmation() {
     return (
         <div className='App noScroll'>
             <header>
-                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/RecipeSelection')}>＜</div>
                 <div id='pageTitle'>{title}</div>
             </header>
 
@@ -70,7 +70,7 @@ function MenuConfirmation() {
             </main>
 
             <footer id='decisionFooter'>
-                <button type='button' id='decisionBtn' onClick={() => navigate('/material')}>手順書作成</button>
+                <button type='button' id='decisionBtn' onClick={() => navigate('/cookProcess')}>手順書作成</button>
             </footer>
         </div>
     );

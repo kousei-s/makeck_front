@@ -95,6 +95,11 @@ export default function RecipeSelection() {
               <img src={images.selectingRecipeButton} alt="上向き三角ボタン" />
             </div>
           </div>
+
+
+          <footer id='decisionFooter'>
+                <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>
+          </footer>
           
         </div>
     );
