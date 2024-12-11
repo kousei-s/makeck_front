@@ -70,7 +70,7 @@ input::placeholder {
 /*メニュー*/
 .menu {
     /* margin-top: 19%; 親コンテナのjustify-content: space-between;とぶつかるからけしてる */  
-    height: 208px;  /*%だと変更されなかったためpxにしておりまする*/
+    height: 218px;  /*%だと変更されなかったためpxにしておりまする*/
     background-color: rgba(255, 249, 249, 1);
     box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
 }

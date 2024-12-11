@@ -15,6 +15,7 @@ const images = {
     selectSideDish : "./src/assets/images/selectSideDish.png",    //副菜
     selectSoup : "./src/assets/images/selectSoup.png",            //汁物
     selectingRecipeButton :"./src/assets/images/selectingRecipeButton.png",//上向き三角のボタン
+    nasuohotasi : "./src/assets/images/nasuohotasi.jpg",
 
 
 
