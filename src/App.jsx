@@ -14,6 +14,7 @@ import './styles/menuConfirmation.css';
 import './styles/stepsDetail.css';
 import './styles/footer.css';
 import './styles/RecipeSelection.css';
+import './styles/modal.css';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 

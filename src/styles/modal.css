@@ -1,0 +1,25 @@
+/* レシピ選択中モーダル */
+.modal_bottom {
+    width: auto;
+    height: 55px;
+    background-color: #F8F5F2;
+    border-radius: 20px 20px 0 0;   /*左上と右上の角を丸くする*/
+    box-shadow: 0 -6px 6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;            /*垂直中央*/
+    justify-content: center;        /*水平中央*/
+    
+}
+
+.modal_name {
+    font-size: 18px;        /*フォントのサイズ*/
+    font-weight: 600;       /*フォントの太さ*/
+    position: absolute;     /*配置固定(upButton右寄せにするため)*/
+
+}
+
+.upButton {
+    margin-left: auto;      /*右寄せ*/
+    margin-right: 10px;     /*調整用*/
+    margin-top: 5px;        /*調整用*/
+}

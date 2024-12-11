@@ -50,8 +50,6 @@ export default function RecipeSelection() {
     },
   ]
 
-  
-  
 
     return(
         <div className="App">
@@ -72,11 +70,6 @@ export default function RecipeSelection() {
           </div>
 
           {/*レシピ選択コンテナ*/}
-          <div>
-            
-          </div>
-
-
           <div id="recipeChoiceContainer">
             {
               menus.map((menu,index)=>{
@@ -92,10 +85,16 @@ export default function RecipeSelection() {
             }
 
           </div>
-            
-         
-
+          
           </main>
+
+          {/*レシピ選択中モーダル*/}
+          <div className="modal_bottom">
+            <p className="modal_name">選択中レシピ</p>
+            <div className="upButton">
+              <img src={images.selectingRecipeButton} alt="上向き三角ボタン" />
+            </div>
+          </div>
           
         </div>
     );
