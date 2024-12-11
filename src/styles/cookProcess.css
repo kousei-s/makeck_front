@@ -1,5 +1,5 @@
 #cookingTime {
-    height: 5.5vh;                       /* 高さ */
+    height: 20%;                       /* 高さ */
     width: 100%;                        /* 横幅 */
 
     font-size: 20px;                    /* 文字サイズ */
@@ -19,6 +19,8 @@
 
     display: flex;                      /* フレックスコンテナ */
 
+    margin-top: 0;
+    margin-bottom: 0;
     align-items: center;                /* 子要素配置 : 垂直中央 */
     justify-content: center;            /* 子要素配置 : 水平中央 */
 }
@@ -36,12 +38,10 @@
     margin-right: 3%;
 }
 .colorBox {
-    width: 2vh;
-    height: 2vh;
+    width: 5%;
+    aspect-ratio: 1 / 1;
     margin-left: 2%;
 }
-
-
 
 .yellow {
     background-color: var(--chart-yellow);
@@ -72,15 +72,18 @@
 
 #imageContainer{
     height: fit-content;
-    padding-top : 5%;
-    padding-bottom: 5%;
+    padding-top : 2%;
+    padding-bottom: 2%;
     margin: auto;
     background-color: rgba(255, 249, 249, 1);
     box-shadow: 2px 2px 8px rgba(48, 39, 21, 0.25);
 }
 
 #chartContainer{
-    height: 70vh;
+    height: 55vh;
+    margin: auto;
+    margin-top: 5%;
+    background-color: aquamarine;
 }
 
 .gridItem {
@@ -100,15 +103,10 @@
     z-index: 90;
 }
 
-#chartContainer {
-    margin-top: 5%;
-}
-
 .chartWrappter {
     /* border: 2px orange solid; */
     display: grid;
     place-items: center;
-    grid-template-rows: repeat(20, 1fr);
 }
 
 .chartWrappter div {
