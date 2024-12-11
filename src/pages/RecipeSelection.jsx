@@ -33,8 +33,8 @@ export default function RecipeSelection() {
       image : images.brownSeaweedSoup 
     },
     {
-      name : "わかめスープ",
-      image : images.brownSeaweedSoup 
+      name : "茄子のおひたしあああああああああああああ",
+      image : images.nasuohotasi 
     },
     {
       name : "わかめスープ",
