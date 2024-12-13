@@ -58,6 +58,7 @@ input::placeholder {
     width: 50%;
     height: 50%;
     margin-bottom: 8%;
+    margin-top: -6%;
     
 }
 
@@ -87,3 +88,22 @@ input::placeholder {
     align-items: center;                /* 子要素配置 : 垂直中央 */
 
 }
+
+.wrapButton {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+.seniButton {
+    margin-top: 5%;
+    box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    background-color: var(--base-color);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+

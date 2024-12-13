@@ -9,16 +9,17 @@ import Button from "@mui/material/Button";
 
 
 export default function CustomDialog({
-    isOpen,
-    content,
-    confirmButtonLabel,
-    cancelButtonLabel,
-    onConfirm,
-    onCancel,
+  isOpen,
+  content,
+  test_content,
+  confirmButtonLabel,
+  cancelButtonLabel,
+  onConfirm,
+  onCancel,
 }) {
-    return(
+  return (
     <React.Fragment>
-             {/* Dialogコンポーネントの利用 */}
+      {/* Dialogコンポーネントの利用 */}
       <Dialog
         open={isOpen}
         aria-labelledby="alert-dialog-title"
@@ -29,7 +30,7 @@ export default function CustomDialog({
       >
         {/* DialogContentコンポーネントの利用 */}
         <DialogContent>
-            
+
           {/* DialogContentTextコンポーネントの利用 */}
           <DialogContentText
             id="alert-dialog-description"
@@ -39,10 +40,11 @@ export default function CustomDialog({
           </DialogContentText>
         </DialogContent>
         <div className="dialogContainer">
-          <img src={images.selectStapleFood} alt="選択中レシピNO主食" />
-          <img src={images.selectMainDish} alt="選択中レシピNO主菜" />
-          <img src={images.selectSideDish} alt="選択中レシピNO副菜" />
-          <img src={images.selectSoup} alt="選択中レシピNO汁物" />
+          <img src={test_content[0] ? `https://makeck.mattuu.com/images/${test_content[0]}.jpg` : images.selectStapleFood} width={125} alt="選択中レシピNO主食" />
+          {/* <img src="https://makeck.mattuu.com/images/00e60535e7e545c6a43b3a0baafb9200.jpg" width={125} alt="" /> */}
+          <img src={test_content[1] ? `https://makeck.mattuu.com/images/${test_content[1]}.jpg` : images.selectMainDish} width={125} alt="選択中レシピNO主菜" />
+          <img src={test_content[2] ? `https://makeck.mattuu.com/images/${test_content[2]}.jpg` : images.selectSideDish} width={125} alt="選択中レシピNO副菜" />
+          <img src={test_content[3] ? `https://makeck.mattuu.com/images/${test_content[3]}.jpg` : images.selectSoup} width={125} alt="選択中レシピNO汁物" />
         </div>
 
         {/* DialogActionsコンポーネントの利用 */}
@@ -52,17 +54,18 @@ export default function CustomDialog({
             {confirmButtonLabel}
           </Button>} */}
           {/* Buttonコンポーネントの利用 ダイアログ閉じるボタン*/}
-          <Button onClick={onCancel} 
-          sx={{ fontSize: "20px", 
-                marginRight:"38%",
+          <Button onClick={onCancel}
+            sx={{
+              fontSize: "20px",
+              marginRight: "38%",
 
-          }}>
+            }}>
             {cancelButtonLabel}
           </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
 
-        
-    );
+
+  );
 }    
