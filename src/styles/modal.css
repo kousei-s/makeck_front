@@ -1,27 +1,59 @@
 /* レシピ選択中モーダル */
-.modal_bottom {
-    position: fixed;                /*モーダル固定*/
-    bottom: -2px;                   /*モーダル固定*/
-    width: 100%;                    /*横幅*/
-    height: 41%;                   /*高さ*/
-    background-color: var(--base-color);    /*背景色*/
-    border-radius: 20px 20px 0 0;   /*左上と右上の角丸*/
-    box-shadow: 0 -6px 6px rgba(0, 0, 0, 0.25); /*閉状態の影*/
-    display: flex;
-    justify-content: center;        /*水平中央*/
-    z-index: 50;
+/* .modal_bottom { */
+    /* position: fixed;                モーダル固定 */
+    /* bottom: -2px;                   モーダル固定 */
+    /* width: 100%;                    横幅 */
+    /* height: 41%;                    高さ */
+    /* background-color: var(--base-color);    背景色 */
+    /* border-radius: 20px 20px 0 0;   左上と右上の角丸 */
+    /* box-shadow: 0 -6px 6px rgba(0, 0, 0, 0.25); 閉状態の影 */
+    /* display: flex; */
+    /* justify-content: center;        水平中央 */
+    /* z-index: 50; */
     
-}
+/* } */
 
-.modal_name {
-    font-size: 18px;        /*フォントのサイズ*/
-    font-weight: 600;       /*フォントの太さ*/
-    position: absolute;     /*配置固定(upButton右寄せにするため)*/
+/* .modal_name { */
+    /* font-size: 18px;        フォントのサイズ */
+    /* font-weight: 600;       フォントの太さ */
+    /* position: absolute;     配置固定(upButton右寄せにするため) */
 
-}
+/* } */
 
-.upButton {
-    margin-left: auto;      /*右寄せ*/
-    margin-right: 15px;     /*調整用*/
-    margin-top: 13px;        /*調整用*/
-}
+/* .upButton { */
+    /* margin-left: auto;      右寄せ */
+    /* margin-right: 15px;     調整用 */
+    /* margin-top: 13px;        調整用 */
+/* } */
+
+/* .noSelectContainer { */
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /*justify-content: space-between;     /*行方向(横方向)の子要素の余白均等配置 */
+    
+/* } */
+
+
+
+#overlay{
+    /*　画面全体を覆う設定　*/
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-color:rgba(0,0,0,0.5);
+    
+      /*　画面の中央に要素を表示させる設定　*/
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+    }
+
+    #content{
+        z-index:2;
+        width:50%;
+        padding: 1em;
+        background:#fff;
+      }  

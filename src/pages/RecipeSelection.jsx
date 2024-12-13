@@ -1,10 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import React from 'react';
 import images from '../hooks/images';
+import { useState } from "react";
+import TestDialog from './TestDialog';
 
 export default function RecipeSelection() {
 
   const navigate = useNavigate();   //遷移のやつだよ
+  
+  // カスタムダイアログ表示、非表示管理
+  const [testDialogOpen, setTestDialogOpen] = useState(false);
+
+  // ダイアログ表示ボタンクリック処理
+  const buttonClickHome = () => {
+    setTestDialogOpen(true);
+  };
 
   {/*ダミーデータ用*/}
   const menus = [
@@ -85,21 +95,58 @@ export default function RecipeSelection() {
             }
 
           </div>
-          
-          </main>
 
           {/*レシピ選択中モーダル*/}
-          <div className="modal_bottom">
+          <div>
+            {/* カスタムダイアログ */}
+          <TestDialog
+            isOpen={testDialogOpen}
+            onConfirm={() => {
+              setTestDialogOpen(false);
+              console.log("okが押されました");
+            }}
+            onCancel={() => {
+              setTestDialogOpen(false);
+              console.log("キャンセルが押されました");
+            }}
+          />
+
+          <button className="DialogButton" onClick={buttonClickHome} >
+            <img src={images.selectMenu} alt="ボタン画像" />
+          </button>
+
+          </div>
+          </main>
+
+          {/* {<div className="modal_bottom">
             <p className="modal_name">選択中レシピ</p>
             <div className="upButton">
               <img src={images.selectingRecipeButton} alt="上向き三角ボタン" />
+            </div>} */}
+          
+            {/*レシピ選択中モーダル内画像コンテナ*/}
+            {/*くそコード😭*/}
+            {/* {{<div className="noSelectContainer">
+              <div className="noSelectWrapper">
+                <img src={images.selectStapleFood} alt="選択されていない主食" />
+              </div>  
+              <div className="noSelectWrapper">
+                <img src={images.selectMainDish} alt="選択されていない主菜" />
+              </div>  
+              <div className="noSelectWrapper">
+                <img src={images.selectSideDish} alt="選択されていない副菜" />
+              </div>
+              <div className="noSelectWrapper"> 
+                <img src={images.selectSoup} alt="選択されていない汁物" />
+              </div>
             </div>
-          </div>
 
+          </div>}} */}
 
-          <footer id='decisionFooter'>
-                <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>
-          </footer>
+        {/*レシピ選択中モーダル内フッター*/}
+        <footer id='decisionFooter'>
+            <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>    
+        </footer>
           
         </div>
     );
