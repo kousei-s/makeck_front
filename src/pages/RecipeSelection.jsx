@@ -3,152 +3,179 @@ import React from 'react';
 import images from '../hooks/images';
 import { useState } from "react";
 import TestDialog from './TestDialog';
+import useMenuData from '../hooks/useMenuData';
 
 export default function RecipeSelection() {
 
-  const navigate = useNavigate();   //遷移のやつだよ
-  
-  // カスタムダイアログ表示、非表示管理
-  const [testDialogOpen, setTestDialogOpen] = useState(false);
-
-  // ダイアログ表示ボタンクリック処理
-  const buttonClickHome = () => {
-    setTestDialogOpen(true);
-  };
-
-  {/*ダミーデータ用*/}
-  const menus = [
-    {
-      name : "イカのリゾット",
-      image : images.squidRisotto
-    },
-    {
-      name : "田舎風鶏の唐揚げ",
-      image : images.FriedChicken
-    },
-    {
-      name : "魚のフルーツ餡かけ",
-      image : images.fishFruitAnkake
-    },
-    {
-      name : "変わり肉じゃが",
-      image : images.MeatPotatoes
-    },
-    {
-      name : "フランクフルトのソテー",
-      image : images.frankfurtSaute
-    },
-    {
-      name : "わかめスープ",
-      image : images.brownSeaweedSoup 
-    },
-    {
-      name : "茄子のおひたしあああああああああああああ",
-      image : images.nasuohotasi 
-    },
-    {
-      name : "わかめスープ",
-      image : images.brownSeaweedSoup 
-    },
-    {
-      name : "わかめスープ",
-      image : images.brownSeaweedSoup 
-    },
-    {
-      name : "わかめスープ",
-      image : images.brownSeaweedSoup 
-    },
-  ]
+    const navigate = useNavigate();   //遷移のやつだよ
 
 
-    return(
+    // カスタムダイアログ表示、非表示管理
+    const [testDialogOpen, setTestDialogOpen] = useState(false);
+
+    const [selectsData, setSelects] = useState(["", "", "", ""]);
+
+    // ダイアログ表示ボタンクリック処理
+    const buttonClickHome = () => {
+        setTestDialogOpen(true);
+    };
+
+
+
+    {/*ヘッダーの名前変更*/ }
+    const headerNames = [
+        {
+            id: 1,
+            name: "主食",
+            apipath: "/syusyoku"
+        },
+        {
+            id: 2,
+            name: "主菜",
+            apipath: "/syusai"
+        },
+        {
+            id: 3,
+            name: "副菜",
+            apipath: "/fukusai"
+        },
+        {
+            id: 4,
+            name: "汁物",
+            apipath: "/sirumono"
+        },
+    ]
+
+    const localkey = "header_state";
+
+    const localstroage = window.localStorage;
+
+    let now_state = localstroage.getItem(localkey)
+
+    if (!now_state) {
+        // header の状態がないとき
+        localstroage.setItem(localkey, 0);
+        now_state = 0;
+    }
+
+    // 選択状態のｓstatekey
+    const select_state = "select_key";
+
+    const [selectedCategory, setSelectedCategory] = useState(headerNames[now_state]); // 初期状態として主食を設定
+
+    const handleClick = (index) => {
+        console.log("押されたよ");
+        // localstroage.setItem(localkey,(Number(now_state) + 1) % 4);
+        localstroage.setItem(localkey, index);
+        // setSelectedCategory(headerNames[2]);  // 画像が押された時にheaderNames[3]を選択
+        window.location.reload();
+    };
+
+    const handleCard = (cardid) => {
+        console.log(cardid);
+        selectsData[now_state] = String(cardid);
+
+        // localstorage に保存
+        localstroage.setItem(select_state, JSON.stringify(selectsData));
+    }
+
+    const [initloading, setInitLoading] = useState(true);
+
+    React.useEffect(() => {
+        // すでに初期化されていたら処理を抜ける
+        if (!initloading) {
+            return;
+        }
+
+        // 現在の選択状態を取得
+        const now_selected = localstroage.getItem(select_state);
+
+        // 存在する時
+        if (now_selected) {
+            setSelects(JSON.parse(now_selected));
+        }
+        // 初期化済みのフラグを立てる
+        setInitLoading(false);
+    }, [initloading]);
+
+
+    // メニューデータ取得
+    //主食
+    var { data, loading, error } = useMenuData(`https://makeck.mattuu.com/api/${headerNames[now_state]["apipath"]}`)
+    var menus = data ? data : [];
+    console.log(menus);
+
+    return (
         <div className="App">
 
-          {/*ヘッダー*/}
-          <header>
-            <div className='backBtn' onClick={() => navigate('/')}>＜</div>
-            <div id='pageTitle'>主菜</div>          
-          </header>
+            {/*ヘッダー*/}
+            <header>
+                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div id='pageTitle'>{selectedCategory.name}</div>
+            </header>
 
-          <main>
+            <main>
 
-          {/*検索フォーム*/}
-          <div className="Form">
-            <form>
-                <input className="FormDesign" type="text" search = "search" placeholder="キーワード検索"/>
-            </form>
-          </div>
+                {/*検索フォーム*/}
+                <div className="Form">
+                    <form>
+                        <input className="FormDesign" type="text" search="search" placeholder="キーワード検索" />
+                    </form>
+                </div>
 
-          {/*レシピ選択コンテナ*/}
-          <div id="recipeChoiceContainer">
-            {
-              menus.map((menu,index)=>{
-                return(
-                  <div className="menuWrapper" key={index}>
-                    <div className="menu">
-                      <img className="menuImage" src={menu.image} alt="menuImage" />
-                      <div className="menuName">{menu.name}</div>
-                    </div>
-                  </div>
-                )
-              })
-            }
+                <div className="wrapButton">
+                    <button className="seniButton" onClick={() => handleClick(0)}>主食</button>
+                    <button className="seniButton" onClick={() => handleClick(1)}>主菜</button>
+                    <button className="seniButton" onClick={() => handleClick(2)}>副菜</button>
+                    <button className="seniButton" onClick={() => handleClick(3)}>汁物</button>
+                </div>
 
-          </div>
+                {/*レシピ選択コンテナ*/}
+                <div id="recipeChoiceContainer">
+                    {
+                        menus.map((menu, index) => {
+                            return (
+                                <div className="menuWrapper" key={index}>
+                                    <div className="menu" onClick={() => handleCard(menu.id)}>
+                                        <img className="menuImage" src={menu.image} alt="menuImage" />
+                                        <div className="menuName">{menu.name}</div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
-          {/*レシピ選択中モーダル*/}
-          <div>
-            {/* カスタムダイアログ */}
-          <TestDialog
-            isOpen={testDialogOpen}
-            onConfirm={() => {
-              setTestDialogOpen(false);
-              console.log("okが押されました");
-            }}
-            onCancel={() => {
-              setTestDialogOpen(false);
-              console.log("キャンセルが押されました");
-            }}
-          />
+                </div>
 
-          <button className="DialogButton" onClick={buttonClickHome} >
-            <img src={images.selectMenu} alt="ボタン画像" />
-          </button>
+                {/*レシピ選択中モーダル*/}
+                <div>
+                    {/* カスタムダイアログ */}
+                    <TestDialog
+                        isOpen={testDialogOpen}
+                        test_content={selectsData}
+                        onConfirm={() => {
+                            setTestDialogOpen(false);
+                            console.log("okが押されました");
+                        }}
+                        onCancel={() => {
+                            setTestDialogOpen(false);
+                            console.log("キャンセルが押されました");
+                        }}
+                    />
 
-          </div>
-          </main>
+                    <button className="DialogButton" onClick={buttonClickHome} >
+                        <img src={images.selectMenu} alt="ボタン画像" />
+                    </button>
 
-          {/* {<div className="modal_bottom">
-            <p className="modal_name">選択中レシピ</p>
-            <div className="upButton">
-              <img src={images.selectingRecipeButton} alt="上向き三角ボタン" />
-            </div>} */}
-          
-            {/*レシピ選択中モーダル内画像コンテナ*/}
-            {/*くそコード😭*/}
-            {/* {{<div className="noSelectContainer">
-              <div className="noSelectWrapper">
-                <img src={images.selectStapleFood} alt="選択されていない主食" />
-              </div>  
-              <div className="noSelectWrapper">
-                <img src={images.selectMainDish} alt="選択されていない主菜" />
-              </div>  
-              <div className="noSelectWrapper">
-                <img src={images.selectSideDish} alt="選択されていない副菜" />
-              </div>
-              <div className="noSelectWrapper"> 
-                <img src={images.selectSoup} alt="選択されていない汁物" />
-              </div>
-            </div>
+                </div>
+            </main>
 
-          </div>}} */}
+            {/*レシピ選択中モーダル内フッター*/}
+            <footer id='decisionFooter'>
+                <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>
+            </footer>
 
-        {/*レシピ選択中モーダル内フッター*/}
-        <footer id='decisionFooter'>
-            <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>    
-        </footer>
-          
         </div>
     );
-    
+
 }
