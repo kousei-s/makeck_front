@@ -83,7 +83,6 @@
     height: 55vh;
     margin: auto;
     margin-top: 5%;
-    background-color: aquamarine;
 }
 
 .gridItem {
@@ -107,6 +106,8 @@
     /* border: 2px orange solid; */
     display: grid;
     place-items: center;
+    height: 100%;
+    width: 50%;
 }
 
 .chartWrappter div {
@@ -116,11 +117,46 @@
     height: 100%;
 }
 
+.task {
+    font-family: 'KaiseiOpti-Medium';
+    font-size: 13px;
+    border-radius: 10px;
+    box-shadow: inset 8px 8px 20px rgba(255, 248, 248, 0.6);
+}
 
-.changeColor {
-    background-color: var(--base-color) !important;
-    content: "" !important;
-    width: 1px !important; /* 縦線の太さ */
-    height: 100%; /* 縦線の高さ */
-    border-left: 1px solid var(--accent-color) !important; /* 縦線の色 */
+.preparation {
+    color: #91581B;
+    background-color: var(--chart-yellow);
+    box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4);
+}
+
+.cooking {
+    color: #91391B;
+    background-color: var(--chart-red);
+    box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4);
+}
+
+.finishing {
+    color: #136906;
+    background-color: var(--chart-green);
+    box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4);
+}
+.line {
+    background-color: var(--base-color);
+    content: "";
+    width: 1px; /* 縦線の太さ */
+    margin: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #8E8989 /* 縦線の色 */
+}
+
+/* エラー・読込途中時のメッセージ */
+#message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'KaiseiOpti-Bold';
 }
