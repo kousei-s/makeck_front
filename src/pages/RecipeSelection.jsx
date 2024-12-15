@@ -4,6 +4,7 @@ import images from '../hooks/images';
 import { useState } from "react";
 import TestDialog from './TestDialog';
 import useMenuData from '../hooks/useMenuData';
+import Swal from "sweetalert2";
 
 export default function RecipeSelection() {
 
@@ -73,6 +74,13 @@ export default function RecipeSelection() {
 
     const handleCard = (cardid) => {
         console.log(cardid);
+        Swal.fire({
+            title: "レシピ追加",
+            icon: "success", // アイコンの種類（success, error, warning, info, question）
+            showConfirmButton: false,
+            timer: 1500,               // 3秒後にアラートを自動で消す
+        });
+
         selectsData[now_state] = String(cardid);
 
         // localstorage に保存
@@ -123,12 +131,22 @@ export default function RecipeSelection() {
                     </form>
                 </div>
 
+                {/*主食 主菜 副菜 汁物 遷移ボタン*/}
                 <div className="wrapButton">
                     <button className="seniButton" onClick={() => handleClick(0)}>主食</button>
                     <button className="seniButton" onClick={() => handleClick(1)}>主菜</button>
                     <button className="seniButton" onClick={() => handleClick(2)}>副菜</button>
                     <button className="seniButton" onClick={() => handleClick(3)}>汁物</button>
                 </div>
+
+                {/*区切り線*/}
+                <div className="line"></div>
+
+                {/*説明文*/}
+                <div className="explanation">
+                    <p>レシピを選択してください</p>
+                </div>
+
 
                 {/*レシピ選択コンテナ*/}
                 <div id="recipeChoiceContainer">
