@@ -15,7 +15,7 @@ function CookProcess() {
 
     // 張りぼて作成用
     var haribote = {
-        totaltime : 85,
+        totaltime : 90,
         menu : [
             {
                 Uid : "f1ac3c05-d055-4695-8083-ec2434dbafa1",
@@ -47,7 +47,7 @@ function CookProcess() {
                 tasks : [
                     { time : 15, type : "preparation", name : "下準備" },
                     // { time : 60, type : "task", name : "冷やす" },
-                    { time : 60, type : "finishing", name : "仕上げ" },
+                    { time : 60, type : "cooking", name : "調理" },
                     { time : 10, type : "line" }
                 ]
             },
@@ -97,7 +97,7 @@ function CookProcess() {
         <div className='App noScroll'>
             <header>
                 {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
                 <div id='pageTitle'>調理手順</div>
             </header>
             <main>
@@ -112,7 +112,7 @@ function CookProcess() {
         <div className='App noScroll'>
             <header>
                 {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
                 <div id='pageTitle'>調理手順</div>
             </header>
             <main>
@@ -126,13 +126,13 @@ function CookProcess() {
         <div className='App noScroll'>
             <header>
                 {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
                 <div id='pageTitle'>調理手順</div>
             </header>
 
             <main>
                 <div id='cookingTime'>
-                    調理時間目安 : {menus.totaltime} 分
+                    調理時間目安 : {haribote.totaltime} 分
                 </div>
                 
                 <div id='processCategory'>
