@@ -159,9 +159,7 @@ function CookProcess() {
                 </div>
                 
                 {/* ガントチャートコンテナ */}
-                <div id='startLabel'>
-
-                </div>
+                <div id='startBar'>スタート！</div>
                 <div id='chartContainer' className='grid'>
                     { haribote.menu.map((element, index) => {
                         return(
