@@ -78,7 +78,7 @@ export default function RecipeSelection() {
             title: "レシピ追加",
             icon: "success", // アイコンの種類（success, error, warning, info, question）
             showConfirmButton: false,
-            timer: 1500,               // 3秒後にアラートを自動で消す
+            timer: 1000,               // 3秒後にアラートを自動で消す
         });
 
         selectsData[now_state] = String(cardid);

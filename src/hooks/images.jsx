@@ -7,6 +7,7 @@ const images = {
     book : './src/assets/images/book.png',                // 本
     share : './src/assets/images/share.png',              // 共有
     detailBorder : './src/assets/images/detailNameBorder.png',// 手順詳細名飾り枠
+    makeckImage : "./src/assets/images/makeckImage.png",    //ホーム画面画像
     
     //レシピ選択画面(RecipeSelection)
     recipeAddButton : "./src/assets/images/recipeAddButton.png",//レシピ追加ボタン
