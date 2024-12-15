@@ -53,10 +53,10 @@ footer{
 
 /* 以下 ホーム画面以外のフッター */
 #decisionFooter {
-    height: 7%;
+    height: 8%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     box-shadow: 0px -4px 7px rgba(157, 154, 154, 0.25);
 }
 

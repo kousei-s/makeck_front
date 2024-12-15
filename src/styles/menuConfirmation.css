@@ -34,6 +34,7 @@
 
     display: flex;                      /* フレックスコンテナ */
     flex-wrap: wrap;
+    margin-top:30px;
 }
 
 /* 各料理 */
@@ -94,4 +95,5 @@
 #naviText {
     width: 100%;
     font-size: 16px;                    /* 文字サイズ */
+    font-weight: 600;
 }

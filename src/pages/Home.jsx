@@ -11,8 +11,9 @@ function Home() {
 
       <header>
         <img src={images.icon} id="userIcon" alt="icon" />
-        <div id="appName">Apurimei</div>
-        <img src={images.logo} id="appLogo" alt="logo"></img>
+        <div id="appName">MakeCK</div>
+        {/*デモ後追加*/}
+        {/* {<img src={images.logo} id="appLogo" alt="logo"></img>} */}
       </header>
 
       <main className=''>
