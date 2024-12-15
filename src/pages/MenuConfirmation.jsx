@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import "../loader.css";
 
-import images from '../hooks/images';
+// import images from '../hooks/images';
+
 
 // 調理時間
 const cookingTime = 90;
@@ -38,6 +40,12 @@ function MenuConfirmation() {
 
     return (
         <div className='App noScroll'>
+            <div style={{height: "100vh", width: "100vw", display: "none"}} className='loader_screen'>
+                <div>
+                    <h2 className='loader_text'>作成中</h2>
+                    <span className="loader"></span>
+                </div>
+            </div>
             <header>
                 <div className='backBtn' onClick={() => navigate('/RecipeSelection')}>＜</div>
                 <div id='pageTitle'>{title}</div>
@@ -70,7 +78,14 @@ function MenuConfirmation() {
             </main>
 
             <footer id='decisionFooter'>
-                <button type='button' id='decisionBtn' onClick={() => navigate('/cookProcess')}>手順書作成</button>
+                <button type='button' id='decisionBtn' onClick={() => {
+                        // loadscreen 出す
+                        document.querySelector('.loader_screen').style.display = "flex"
+                        setTimeout(() => {
+                            navigate('/cookProcess')
+                        }, 3000)
+                    }
+                }>手順書作成</button>
             </footer>
         </div>
     );
