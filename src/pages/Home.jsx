@@ -18,7 +18,7 @@ function Home() {
 
       <main className=''>
         <div className="cookingImgwrapper">
-          <img className="cookingImg" src={images.someImage} alt="料理写真(暫定)"></img>
+          <img className="cookingImg" src={images.makeckImage} alt="料理写真(暫定)"></img>
         </div>
 
         <div className="selectionMenu">
