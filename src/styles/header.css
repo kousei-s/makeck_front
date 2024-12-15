@@ -48,7 +48,11 @@ header * {
 
 /* タイトル : ホーム画面 */
 #appName {
-    font-size: 24px;              /* 文字サイズ */
+    font-size: 35px;              /* 文字サイズ */
+    font-weight: 500;
     font-family: "Paprika";       /* フォント */
+    position: absolute;           /*add:1225*/
+    top: 12px;
+    left: 50px; 
 }
     

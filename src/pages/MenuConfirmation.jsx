@@ -8,24 +8,24 @@ const cookingTime = 90;
 // 献立リスト
 const menus = [
     {
-        name : "イカのリゾット",
+        name : "田舎風トリのから揚げ",
         category : "主食",
-        image : images.squidRisotto
+        image : "https://makeck.mattuu.com/images/ce9c3514d8434f92b0675562466b0284.jpg"
     },
     {
-        name : "フランクフルトのソテー",
+        name : "ジャガイモのカリカリ",
         category : "主菜",
-        image : images.frankfurtSaute
+        image : "https://makeck.mattuu.com/images/0d8a47e782c1443295147446a33fa1d0.jpg"
     },
     {
-        name : "ココナッツミルクゼリー",
+        name : "きゅうりの四川風ピクルス",
         category : "副菜",
-        image : images.coconutMilkJelly
+        image : "https://makeck.mattuu.com/images/16f14a5052b0469eb4e84b7bea0d71b3.jpg"
     },
     {
-        name : "わかめスープ",
+        name : "アスパラのクリームスープ",
         category : "汁物",
-        image : images.brownSeaweedSoup
+        image : "https://makeck.mattuu.com/images/523b0de0afda489a964af67918b6b185.jpg"
     }
 ]
 
