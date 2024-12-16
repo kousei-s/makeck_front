@@ -1,3 +1,4 @@
+
 import { useNavigate } from 'react-router-dom';
 
 import useMenuData from '../hooks/useMenuData';
@@ -21,47 +22,42 @@ function CookProcess() {
                 Uid : "f1ac3c05-d055-4695-8083-ec2434dbafa1",
                 Name : "田舎風トリのから揚げ",
                 tasks : [
-                    { time : 15, type : "line" },
-                    { time : 10, type : "preparation", name : "下準備" },
-                    // { time : 15, type : "task", name : "漬ける" },
-                    { time : 15, type : "cooking", name : "調理" },
-                    { time : 15, type : "line" },
-                    // { time : 20, type : "task", name : "調理" },
-                    { time : 20, type : "finishing", name : "仕上げ" },
-                    { time : 10, type : "line" }
+                    { time : 15 },
+                    { time : 10, name : "下準備" },
+                    { time : 15, name : "調理" },
+                    { time : 15 },
+                    { time : 20, name : "仕上げ" },
+                    { time : 10 }
                 ],
             },
             {
                 Uid : "1837a368-f6df-4c2a-937d-5a2494782144",
                 Name : "ジャガイモのカリカリ炒め",
                 tasks : [
-                    { time : 35, type : "line" },
-                    { time : 10, type : "preparation", name : "下準備" },
-                    { time : 30, type : "line" },
-                    { time : 10, type : "cooking", name : "調理" }
+                    { time : 35 },
+                    { time : 10, name : "下準備" },
+                    { time : 30 },
+                    { time : 10, name : "調理" }
                 ]
             },
             {
                 Uid : "6e30f2b1-e3bf-4b87-99fa-6f0293de01d2",
                 Name : "キュウリの四川風ピクルス",
                 tasks : [
-                    { time : 15, type : "preparation", name : "下準備" },
-                    // { time : 60, type : "task", name : "冷やす" },
-                    { time : 60, type : "cooking", name : "調理" },
-                    { time : 10, type : "line" }
+                    { time : 15, name : "下準備" },
+                    { time : 60, name : "調理" },
+                    { time : 10 }
                 ]
             },
             {
                 Uid : "f36c60e5-1345-4bc1-9359-7daee17121d5",
                 Name : "アスパラのクリームスープ",
                 tasks : [
-                    { time : 25, type : "line" },
-                    { time : 10, type : "preparation", name : "下準備" },
-                    // { time : 15, type : "task", name : "煮込む" },
-                    { time : 15, type : "cooking", name : "調理" },
-                    // { time : 10, type : "task", name : "調理" },
-                    { time : 10, type : "finishing", name : "仕上げ" },
-                    { time : 25, type : "line" }
+                    { time : 25 },
+                    { time : 10, name : "下準備" },
+                    { time : 15, name : "調理" },
+                    { time : 10, name : "仕上げ" },
+                    { time : 25 }
                 ]
             }
         ]
@@ -75,8 +71,7 @@ function CookProcess() {
     });
 
     // チャート生成
-    // const { charts, chartError } = useCreateChart(menus); // すべてのチャートを一括生成
-    // console.log("charts : ", charts[0] ? charts : "まだ");
+    const { charts, chartError } = useCreateChart(menus); // すべてのチャートを一括生成
 
     // 次のページ
     const nextPage = {
@@ -93,33 +88,33 @@ function CookProcess() {
     ];
 
     if (error) {
-    return (
-        <div className='App noScroll'>
-            <header>
-                {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
-                <div id='pageTitle'>調理手順</div>
-            </header>
-            <main>
-            <h1 id='message'>{error.message}</h1>
-            </main>
-        </div>
-    )
+        return (
+            <div className='App noScroll'>
+                <header>
+                    {/* 戻るボタン */}
+                    <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
+                    <div id='pageTitle'>調理手順</div>
+                </header>
+                <main>
+                <h1 id='message'>{error.message}</h1>
+                </main>
+            </div>
+        )
     }
 
     if (loading) {
-    return (
-        <div className='App noScroll'>
-            <header>
-                {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
-                <div id='pageTitle'>調理手順</div>
-            </header>
-            <main>
-            <h1 id='message'>nowLoading...</h1>
-            </main>
-        </div>
-    )
+        return (
+            <div className='App noScroll'>
+                <header>
+                    {/* 戻るボタン */}
+                    <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
+                    <div id='pageTitle'>調理手順</div>
+                </header>
+                <main>
+                <h1 id='message'>nowLoading...</h1>
+                </main>
+            </div>
+        )
     }
 
     return (
@@ -165,28 +160,36 @@ function CookProcess() {
                         return(
                             <div key={element.Uid} className='chartWrapper'
                             style={{gridTemplateRows: `repeat(${haribote.totaltime}, 1fr)`, height: "100%", width: "80%", margin: "auto"}}>
-                                <div key={`${element.Uid}-start`} className='girdItem line' style={{height: `3%`}}></div>
+                                <div key={`${element.Uid}-start`} className='girdItem chartLine' style={{height: `3%`}}></div>
                                 { element.tasks.map((task, index) => {
                                     // クラス指定
-                                    var c = "gridItem";
-                                    
-                                    switch (task.type) {
-                                        case "line" :
-                                            c += ` ${task.type}`;
+                                    var c = "gridItem ";
+                                    switch (task.name) {
+                                        case "下準備" : 
+                                            c += "task preparation";
                                             break;
                                         
-                                        default:
-                                            c += ` task ${task.type}`;
+                                        case "調理" :
+                                            c += "task cooking";
+                                            break;
+
+                                        case "仕上げ" :
+                                            c += "task finishing";
+                                            break;
+                                    
+                                        case undefined :
+                                            c += "chartLine";
                                             break;
                                     }
-                                    console.log(`${element.Name}-task${index}\n${c}`)
+
+                                    console.log(`${element.Name}${task.name? ("\t" + task.name) : "\t空き時間"}`)
                                     return(
-                                        <div key={`${element}-task${index}`} className={c} /* style={{gridRow: `span ${task.time}` }}*/ style={{height : `${task.time / haribote.totaltime * 100}%`}}>
+                                        <div key={`${element}-task${index}`} className={c} style={{height : `${task.time / haribote.totaltime * 100}%`}}>
                                             {task.name}
                                         </div>
                                     )
                                 })}
-                                <div key={`${element.Uid}-end`} className='girdItem line' style={{height: `3%`}}></div>
+                                <div key={`${element.Uid}-end`} className='girdItem chartLine' style={{height: `3%`}}></div>
                             </div>
                         )
                     })}
