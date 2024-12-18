@@ -5,6 +5,7 @@ import MenuConfirmation from './pages/MenuConfirmation';
 import StepsDetail from './pages/StepsDetail'
 import React from 'react';
 import RecipeSelection from './pages/RecipeSelection'
+import MaterialList from './pages/MaterialList'
 
 import './styles/index.css';
 import './styles/header.css';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/menuConfirmation' element={<MenuConfirmation />}></Route>
           <Route path='/stepsDetail' element={<StepsDetail />}></Route>
           <Route path='/RecipeSelection' element={<RecipeSelection />}></Route>
+          <Route path='/materialList' element={<MaterialList />}></Route>
         </Routes>
       </Router>
     </>
