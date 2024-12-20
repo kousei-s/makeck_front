@@ -15,29 +15,51 @@ const useCreateChart = (menuData) => {
         if (menus == null) {
           throw new Error(`献立が見つかりません`);
         }
-        console.log(`menu : `, menus);
-
-        // 空白時間把握用
-        var freeStart = null;
-        var freeEnd = null;
+        console.log(`menus : `, menus);
 
         // 4品のID
         var uids = [];
-        menus.recipies.forEach((element, index) => {
+        menus.recipies.forEach((element) => {
           uids.push(element.Uid);
         });
 
         // 全タスク
+        const recipies = menus.recipies;
         const tasks = menus.tasks;
-        console.log("tasks : ", tasks);
+        // console.log("tasks : ", tasks);
 
         // 最終結果格納配列
-        var result = new Array(4).fill(null).map(() => new Array(tasks.length).fill([]));
+        // 総時間, メニュー格納用空配列
+        var result = {
+          totalTime : menus.totaltime,
+          menu : []
+        }
+
+        // メニュー格納用配列に要素格納
+        // uid, 名前, タスク格納用から配列
+        recipies.forEach((element, index) => {
+          result.menu.push({
+            uid : element.Uid,
+            name : element.Name,
+            tasks : []
+          })
+        });
+
+        // タスク格納用配列
+        // uid, タスク名, 必要時間,
+        result.menu.forEach((menuItem, index) => {
+          console.log(`menuItem : `, menuItem);
+
+        });
+        
+        
+        
+
         console.log("result : " , result);
 
         // 4品分のチャート作成
         for (let i = 0; i < menus.recipies.length; i++) {
-          console.log(`--- ${i}品目 ---`);
+          // console.log(`--- ${i}品目 ---`);
           // 商品のID指定
           var uid = uids[i];
 
@@ -46,8 +68,8 @@ const useCreateChart = (menuData) => {
             // 手順が存在するか判断
             if (element.tejuns[uid].time == null) {
             }else{
-              console.log(element.tejuns[uid].name);
-              console.log("result[", i, "][", index, "]に代入");
+              // console.log(element.tejuns[uid].name);
+              // console.log("result[", i, "][", index, "]に代入");
               result[i][index].push(
                 <div key={`${uid}-task${index}`} className='gridItem' style={{gridRow: `span ${element.tejuns[uid].time}`}}>
                   {element.tejuns[uid].name}
@@ -85,8 +107,6 @@ const useCreateChart = (menuData) => {
         //   }
         // });
         
-        console.log(result[0]);
-
         setChart(result); // データを状態に保存
       } catch (err) {
         setError(err.message); // エラーを状態に保存
