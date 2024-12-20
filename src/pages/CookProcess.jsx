@@ -12,7 +12,7 @@ function CookProcess() {
     // メニューデータ取得
     const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
     const menus = data ? data : "";
-    console.log(`menus : \n`, menus);
+    // console.log(`menus : \n`, menus);
 
     // 張りぼて作成用
     var haribote = {
@@ -64,9 +64,9 @@ function CookProcess() {
     };
 
     haribote.menu.forEach(element => {
-        console.log(element.Name);
+        // console.log(element.Name);
         element.tasks.forEach((task, index) => {
-            console.log(`手順${index} : ${task.name ? task.name : "なし"}\t|\t所要時間 : ${task.time}分`)
+            // console.log(`手順${index} : ${task.name ? task.name : "なし"}\t|\t所要時間 : ${task.time}分`)
         });
     });
 
@@ -182,7 +182,7 @@ function CookProcess() {
                                             break;
                                     }
 
-                                    console.log(`${element.Name}${task.name? ("\t" + task.name) : "\t空き時間"}`)
+                                    // console.log(`${element.Name}${task.name? ("\t" + task.name) : "\t空き時間"}`)
                                     return(
                                         <div key={`${element}-task${index}`} className={c} style={{height : `${task.time / haribote.totaltime * 100}%`}}>
                                             {task.name}
