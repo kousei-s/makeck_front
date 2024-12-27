@@ -17,6 +17,7 @@ import './styles/footer.css';
 import './styles/RecipeSelection.css';
 import './styles/modal.css';
 import './styles/CustomDialog.css';
+import './styles/materialList.css';
 
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
