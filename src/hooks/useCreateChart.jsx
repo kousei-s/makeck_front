@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 const useCreateChart = (menuData) => {
   // 状態を定義
-  const [chart, setChart] = useState(null);
-  const [error, setError] = useState(null);
+  const [chart, setChart] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     // データ取得用の非同期関数
@@ -11,113 +11,131 @@ const useCreateChart = (menuData) => {
       try {
         console.log("----- start creating chart task -----")
         // メニューデータを取得
-        const menus = menuData;
+        const menus = menuData
         if (menus == null) {
-          throw new Error(`献立が見つかりません`);
+          throw new Error(`献立が見つかりません`)
         }
-        console.log(`menus : `, menus);
+        console.log(`menus : `, menus)
 
         // 4品のID
-        var uids = [];
+        var uids = []
         menus.recipies.forEach((element) => {
-          uids.push(element.Uid);
-        });
+          uids.push(element.Uid)
+        })
 
         // 全タスク
-        const recipies = menus.recipies;
-        const tasks = menus.tasks;
-        // console.log("tasks : ", tasks);
+        const recipies = menus.recipies
+        const tasks = menus.tasks
+        console.log("tasks : ", tasks)
 
-        // 最終結果格納配列
-        // 総時間, メニュー格納用空配列
+        var tejun, startTime, endTime, nextTask = null
+
+        // レシピチャート用配列
         var result = {
+          // 調理時間
           totalTime : menus.totaltime,
-          menu : []
+
+          // メニュー4品
+          menu : 
+            recipies.map((element, index) => {
+              var menuId = element.Uid
+              console.log(element.Name)
+              return({
+                // メニューID
+                uid : menuId,
+
+                // メニュー名
+                name : element.Name,
+
+                // 最終状態
+                lastState : element.LastSatate,
+
+                // 手順一覧(あとで)
+                task : 
+                  tasks.map((task, taskIndex) => {
+                    tejun = task.tejuns[menuId]
+
+                    // 対象メニューごとにリセット
+                    if (taskIndex == 0) {
+                      startTime = null
+                      endTime = null
+                    }
+
+                    // 手順があるかないか
+                    if (tejun.name == undefined) {
+                      // 空き時間の開始時間
+                      if (startTime == null) startTime = task.startTime
+
+                      // 次の手順参照用
+                      nextTask = tasks[taskIndex+1]
+
+                      // 空き時間が終了時間まで続いた場合
+                      if (taskIndex == (tasks.length-1)) {
+                        endTime = menus.totaltime
+                      }
+                      // 次の手順がある場合
+                      else if (nextTask.tejuns[menuId].name != undefined) {
+                        endTime = nextTask.startTime
+                      }
+
+                      // 空き時間終了時点で格納
+                      if (endTime) {
+                        return({
+                          taskName : "空き時間",
+                          startTime : startTime,
+                          endTime : endTime,
+                          useTime : endTime-startTime
+                        })
+                      }
+                                            
+                    }else{
+                      // 手順がある場合
+                      startTime = tejun.time+task.startTime
+                      endTime = null
+
+                      return({
+                        taskId : tejun.id,
+                        taskName : tejun.name,
+                        startTime : task.startTime,
+                        endTime : tejun.time+task.startTime,
+                        useTime : tejun.time
+                      })
+                    }
+                  })
+              })
+            })
         }
 
-        // メニュー格納用配列に要素格納
-        // uid, 名前, タスク格納用から配列
-        recipies.forEach((element, index) => {
-          result.menu.push({
-            uid : element.Uid,
-            name : element.Name,
-            tasks : []
-          })
-        });
+        console.log(result)
 
-        // タスク格納用配列
-        // uid, タスク名, 必要時間,
-        result.menu.forEach((menuItem, index) => {
-          console.log(`menuItem : `, menuItem);
 
-        });
-        
-        
-        
+        // 取得確認
+        console.log(`料理時間目安 : ${result.totalTime}分`)
 
-        console.log("result : " , result);
-
-        // 4品分のチャート作成
-        for (let i = 0; i < menus.recipies.length; i++) {
-          // console.log(`--- ${i}品目 ---`);
-          // 商品のID指定
-          var uid = uids[i];
-
-          // チャート作成
-          tasks.forEach((element, index)=> {
-            // 手順が存在するか判断
-            if (element.tejuns[uid].time == null) {
-            }else{
-              // console.log(element.tejuns[uid].name);
-              // console.log("result[", i, "][", index, "]に代入");
-              result[i][index].push(
-                <div key={`${uid}-task${index}`} className='gridItem' style={{gridRow: `span ${element.tejuns[uid].time}`}}>
-                  {element.tejuns[uid].name}
-                </div>
-              )
+        result.menu.map(element => {
+          console.log(`${element.name}`)
+          console.log(`UID : ${element.uid}`)
+          console.log(`最終状態 : ${element.lastState}`)
+          console.log("手順")
+          element.task.map((t, tIndex) => {
+            if(t != undefined) {
+              console.log(`\t${t.taskName}\n\t所要時間 : ${t.useTime}分 (${t.startTime}分～${t.endTime}分)`)
             }
-            
-          });
-        }
-
-        // tasks.forEach((element, index) => {
-        //   console.log(`element :`, element.tejuns[uid])
-        //   if (element.tejuns[uid].time) {
-        //     console.log(`タスク${index}\n開始時間 : ${element.startTime}\n手順 : ${element.tejuns[uid].name} | ${element.tejuns[uid].time}`);
-        //     result[menuIndex].push(
-        //       <div key={`uid-${uid}-task-${index}`} className='gridItem' style={{gridRow: `span ${element.tejuns[uid].time}`}}>
-        //         a
-        //       </div>
-        //     );
-        //   }else{
-        //     if ( freeStart == null ) freeStart = element.startTime;
-        //     freeEnd = tasks[index+1].startTime-1;
-        //     console.log(`空白時間 : ${freeStart}-${freeEnd}`)
-
-        //     if (freeEnd != null) {
-        //       console.log(`空白時間 : ${freeEnd - freeStart}`)
-        //       result[menuIndex].push(
-        //         <div key={`uid-${uid}-task-${index}`} className='gridItem line' style={{gridRow: `span ${freeEnd-freeStart}`}}>
-        //           a
-        //         </div>
-        //       );
-        //       freeStart = null;
-        //       freeEnd = null;
-        //     }
-        //   }
-        // });
+          })
+          console.log("")
+        });
         
-        setChart(result); // データを状態に保存
+        setChart(result) // データを状態に保存
       } catch (err) {
-        setError(err.message); // エラーを状態に保存
+        setError(err.message) // エラーを状態に保存
       }
-    };
+    }
 
-    createChart();    // 関数を呼び出し
-  }, [menuData]);   // 献立が変更されるたびに実行
+    createChart()    // 関数を呼び出し
+  }, [menuData])   // 献立が変更されるたびに実行
 
   // 他のコンポーネントで使えるように値を返す
-  return { chart, error };
-};
+  return { chart, error }
+}
 
-export default useCreateChart;
+export default useCreateChart
