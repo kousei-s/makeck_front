@@ -15,7 +15,6 @@ const useCreateChart = (menuData) => {
         if (menus == null) {
           throw new Error(`献立が見つかりません`)
         }
-        console.log(`menus : `, menus)
 
         // 4品のID
         var uids = []
@@ -26,9 +25,10 @@ const useCreateChart = (menuData) => {
         // 全タスク
         const recipies = menus.recipies
         const tasks = menus.tasks
-        console.log("tasks : ", tasks)
 
-        var tejun, startTime, endTime, nextTask = null
+        // 配列生成時に使用する変数
+        // 1つの手順, 開始時間, 終了時間, 次の手順
+        var tejun, startTime, endTime, nextTask
 
         // レシピチャート用配列
         var result = {
@@ -39,7 +39,6 @@ const useCreateChart = (menuData) => {
           menu : 
             recipies.map((element, index) => {
               var menuId = element.Uid
-              console.log(element.Name)
               return({
                 // メニューID
                 uid : menuId,
@@ -106,23 +105,19 @@ const useCreateChart = (menuData) => {
             })
         }
 
-        console.log(result)
-
-
-        // 取得確認
+        // 取得確認 (使用部分以外はコメントアウトした方が見やすい)
         console.log(`料理時間目安 : ${result.totalTime}分`)
 
         result.menu.map(element => {
           console.log(`${element.name}`)
-          console.log(`UID : ${element.uid}`)
-          console.log(`最終状態 : ${element.lastState}`)
-          console.log("手順")
-          element.task.map((t, tIndex) => {
-            if(t != undefined) {
-              console.log(`\t${t.taskName}\n\t所要時間 : ${t.useTime}分 (${t.startTime}分～${t.endTime}分)`)
-            }
-          })
-          console.log("")
+          // console.log(`UID : ${element.uid}`)
+          // console.log(`最終状態 : ${element.lastState}`)
+          // console.log("手順")
+          // element.task.map((t, tIndex) => {
+          //   if(t != undefined) {
+          //     console.log(`\t${t.taskName}\n\t所要時間 : ${t.useTime}分 (${t.startTime}分～${t.endTime}分)`)
+          //   }
+          // })
         });
         
         setChart(result) // データを状態に保存
