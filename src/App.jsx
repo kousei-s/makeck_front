@@ -32,7 +32,7 @@ function App() {
           <Route path="/fromFirst" element={<FromFirst />} />
           <Route path='/cookProcess' element={<CookProcess />} />
           <Route path='/menuConfirmation' element={<MenuConfirmation />}></Route>
-          <Route path='/stepsDetail' element={<StepsDetail />}></Route>
+          <Route path='/stepsDetail/:id' element={<StepsDetail />}></Route>
           <Route path='/RecipeSelection' element={<RecipeSelection />}></Route>
           <Route path='/materialList' element={<MaterialList />}></Route>
         </Routes>

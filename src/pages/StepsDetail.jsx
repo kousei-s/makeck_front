@@ -1,7 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import images from '../hooks/images';
 
 function StepsDetail() {
+    // 手順ID受取
+    const { id } = useParams();
+    console.log("id : ", id);
+    
     // 画面遷移用フック
     const navigate = useNavigate();
     
