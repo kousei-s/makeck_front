@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 const useCreateChart = (menuData) => {
   // 状態を定義
   const [chart, setChart] = useState(null)
-  const [error, setError] = useState(null)
+  const [chartError, setChartError] = useState(null)
 
   useEffect(() => {
     // データ取得用の非同期関数
@@ -80,6 +80,7 @@ const useCreateChart = (menuData) => {
                       // 空き時間終了時点で格納
                       if (endTime) {
                         return({
+                          taskId : `${menuId}-${taskIndex}`,
                           taskName : "空き時間",
                           startTime : startTime,
                           endTime : endTime,
@@ -130,7 +131,7 @@ const useCreateChart = (menuData) => {
   }, [menuData])   // 献立が変更されるたびに実行
 
   // 他のコンポーネントで使えるように値を返す
-  return { chart, error }
+  return { chart, chartError }
 }
 
 export default useCreateChart
