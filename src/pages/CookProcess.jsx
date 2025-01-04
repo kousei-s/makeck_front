@@ -13,67 +13,9 @@ function CookProcess() {
     const menus = data ? data : "";
     // console.log(`menus : \n`, menus);
 
-    // 張りぼて作成用
-    var haribote = {
-        totaltime : 90,
-        menu : [
-            {
-                Uid : "f1ac3c05-d055-4695-8083-ec2434dbafa1",
-                Name : "田舎風トリのから揚げ",
-                tasks : [
-                    { time : 15 },
-                    { time : 10, name : "下準備" },
-                    { time : 15, name : "調理" },
-                    { time : 15 },
-                    { time : 20, name : "仕上げ" },
-                    { time : 10 }
-                ],
-            },
-            {
-                Uid : "1837a368-f6df-4c2a-937d-5a2494782144",
-                Name : "ジャガイモのカリカリ炒め",
-                tasks : [
-                    { time : 35 },
-                    { time : 10, name : "下準備" },
-                    { time : 30 },
-                    { time : 10, name : "調理" }
-                ]
-            },
-            {
-                Uid : "6e30f2b1-e3bf-4b87-99fa-6f0293de01d2",
-                Name : "キュウリの四川風ピクルス",
-                tasks : [
-                    { time : 15, name : "下準備" },
-                    { time : 60, name : "調理" },
-                    { time : 10 }
-                ]
-            },
-            {
-                Uid : "f36c60e5-1345-4bc1-9359-7daee17121d5",
-                Name : "アスパラのクリームスープ",
-                tasks : [
-                    { time : 25 },
-                    { time : 10, name : "下準備" },
-                    { time : 15, name : "調理" },
-                    { time : 10, name : "仕上げ" },
-                    { time : 25 }
-                ]
-            }
-        ]
-    };
-
-    haribote.menu.forEach(element => {
-        // console.log(element.Name);
-        element.tasks.forEach((task, index) => {
-            // console.log(`手順${index} : ${task.name ? task.name : "なし"}\t|\t所要時間 : ${task.time}分`)
-        });
-    });
-
     // チャート生成
     const { chart, chartError } = useCreateChart(menus? menus : null); // すべてのチャートを一括生成
     var chartData = chart? chart : null
-    console.log("chartData : ")
-    console.log(chartData? chartData : null)
 
     // 次のページ
     const nextPage = {
@@ -191,7 +133,7 @@ function CookProcess() {
                                         return(
                                             <div key={t.taskId} className={c} 
                                             style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                            onClick={() => navigate('/stepsDetail')}>
+                                            onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
                                                 {t.taskName != "空き時間" ? t.taskName : null}
                                             </div>
                                         )
