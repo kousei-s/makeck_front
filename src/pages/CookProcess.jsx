@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 
 import useMenuData from '../hooks/useMenuData';
@@ -71,7 +70,10 @@ function CookProcess() {
     });
 
     // チャート生成
-    const { charts, chartError } = useCreateChart(menus); // すべてのチャートを一括生成
+    const { chart, chartError } = useCreateChart(menus? menus : null); // すべてのチャートを一括生成
+    var chartData = chart? chart : null
+    console.log("chartData : ")
+    console.log(chartData? chartData : null)
 
     // 次のページ
     const nextPage = {
@@ -87,7 +89,7 @@ function CookProcess() {
         "https://makeck.mattuu.com/images/523b0de0afda489a964af67918b6b185.jpg",
     ];
 
-    if (error) {
+    if (error || chartError) {
         return (
             <div className='App noScroll'>
                 <header>
@@ -110,9 +112,6 @@ function CookProcess() {
                     <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
                     <div id='pageTitle'>調理手順</div>
                 </header>
-                <main>
-                <h1 id='message'>nowLoading...</h1>
-                </main>
             </div>
         )
     }
@@ -127,7 +126,7 @@ function CookProcess() {
 
             <main>
                 <div id='cookingTime'>
-                    調理時間目安 : {haribote.totaltime} 分
+                    調理時間目安 : {chartData?.totalTime} 分
                 </div>
                 
                 <div id='processCategory'>
@@ -156,16 +155,23 @@ function CookProcess() {
                 {/* ガントチャートコンテナ */}
                 <div id='startBar'>スタート！</div>
                 <div id='chartContainer' className='grid'>
-                    { haribote.menu.map((element, index) => {
+                    {chartData?.menu?.map((element, index) => {
                         return(
-                            <div key={element.Uid} className='chartWrapper'
-                            style={{gridTemplateRows: `repeat(${haribote.totaltime}, 1fr)`, height: "100%", width: "80%", margin: "auto"}}>
-                                <div key={`${element.Uid}-start`} className='girdItem chartLine' style={{height: `3%`}}></div>
-                                { element.tasks.map((task, index) => {
-                                    // クラス指定
-                                    var c = "gridItem ";
-                                    switch (task.name) {
-                                        case "下準備" : 
+                            // 1品分のチャート
+                            <div key={element.uid} className='chartWrapper'
+                             style={{gridTemplateRows: `repeat(${chartData?.totalTime}, 1fr)`,
+                             height: "95%", width: "80%", margin: "auto", marginTop: "0"}}>
+
+                                {/* スタートバーとの間隔確保 */}
+                                <div key={`${element.uid}-start`} className='girdItem chartLine' style={{height: `3%`}}></div>
+
+                                {/* 手順 */}
+                                {element?.task?.map((t, tIndex) => {
+                                    if (t != undefined) {
+                                        // クラス指定用
+                                        var c = "gridItem ";
+                                        switch (t.taskName) {
+                                            case "下準備" : 
                                             c += "task preparation";
                                             break;
                                         
@@ -177,48 +183,30 @@ function CookProcess() {
                                             c += "task finishing";
                                             break;
                                     
-                                        case undefined :
+                                        case "空き時間" :
                                             c += "chartLine";
                                             break;
-                                    }
+                                        }
 
-                                    // console.log(`${element.Name}${task.name? ("\t" + task.name) : "\t空き時間"}`)
-                                    return(
-                                        <div key={`${element}-task${index}`} className={c} style={{height : `${task.time / haribote.totaltime * 100}%`}}>
-                                            {task.name}
-                                        </div>
-                                    )
+                                        return(
+                                            <div key={t.taskId} className={c} 
+                                            style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
+                                            onClick={() => navigate('/stepsDetail')}>
+                                                {t.taskName != "空き時間" ? t.taskName : null}
+                                            </div>
+                                        )
+                                    }else{
+                                        return null
+                                    }
                                 })}
-                                <div key={`${element.Uid}-end`} className='girdItem chartLine' style={{height: `3%`}}></div>
+
+                            {/* フッターとの間隔確保 */}
+                            <div key={`${element.uid}-end`} className='girdItem chartLine' style={{height: `3%`}}></div>
                             </div>
                         )
                     })}
                 </div>
             </main>
-            {/* { menus.recipies.map((value, index) => {
-                            // let {chart, chartError} = useCreateChart(data, index);
-                            return(
-                                <div key={value.Uid} id={value.Uid} className="chartWrapper"
-                                style={{gridTemplateRows:`repeat(${menus.totalTime}, 1fr)`}}>{
-                                    // chart
-                                }</div>
-                            )
-                    })} */}
-                    {/* {chart.map((value, index) => {
-                        return (
-                            <div key={index} className='chartWrappter' style={{gridTemplateRows: `repeat(${testData.totaltime}, 1fr)`}}>
-                                {value.map((value, index) => {
-                                    // 色変更処理 (あとで実データに合わせて修正)
-                                    var c = "gridItem";
-                                    if (Math.trunc(Math.random()*10 % 2) === 0) {
-                                        c += " line";
-                                    }
-
-                                    return <div key={index} className={c}></div>
-                                })}
-                            </div>
-                        )
-                    })} */}
 
         <footer id='decisionFooter'>
             <button type='button' id='decisionBtn' onClick={() => navigate(nextPage.path)}>{nextPage.title}</button>
