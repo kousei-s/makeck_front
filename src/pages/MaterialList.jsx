@@ -21,16 +21,21 @@ export default function MaterialList() {
     // サンプルデータ
 const data = [
     {
-      question: "フランクフルトのソテー",
+      materialname: "フランクフルトのソテー",
       answer: 
         [
-            "Answer 1",
-            "aaaaa"
+            "フランクフルト",
+            "ブロッコリー",
+            "ニンニク",
+            "赤唐辛子",
+            "オリーブ油(サラダ油)",
+            "塩、故障",
+
         ]
     
     },
     {
-      question: "イカのリゾット",
+      materialname: "イカのリゾット",
       answer:
         [
             "Answer 2",
@@ -38,7 +43,7 @@ const data = [
         ]
     },
     {
-      question: "ココナッツミルクゼリー",
+      materialname: "ココナッツミルクゼリー",
       answer:
         [
             "Answer 3",
@@ -46,7 +51,7 @@ const data = [
         ]
     },
     {
-      question: "わかめスープ",
+      materialname: "わかめスープ",
       answer:
         [
             "Answer 4",
@@ -75,7 +80,7 @@ const data = [
                     <div className="item" key={i}>  {/*パフォーマンス向上のためらしい*/}
                     {console.log("インデックス番号:", i, "要素:", item)}
                         <div className='title' onClick={() => toggle(i)}>         
-                        <h2>{item.question}</h2>
+                        <h2 className="materialname">{item.materialname}</h2>
                         {/* 表示、非表示を切り替えるボタン */}
                         <span>{selected === i ? "-" : "+"}</span>
                         </div>
