@@ -5,11 +5,16 @@ import useCreateChart from '../hooks/useCreateChart';
 import images from '../hooks/images';
 import { height } from '@mui/system';
 
+
 function CookProcess() {
     const navigate = useNavigate();
 
     // メニューデータ取得
     const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
+    const { syusyoku, syusyokuLoading, syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
+    const { syusai, syusaiLoading, syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
+    const { fukusai, fuuksaiLoading, fukusaiError } = useMenuData("https://makeck.mattuu.com/api/fukusai");
+    const { sirumono, sirumonoLoading, sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
     const menus = data ? data : "";
     // console.log(`menus : \n`, menus);
 
@@ -108,7 +113,7 @@ function CookProcess() {
                                 <div key={`${element.uid}-start`} className='girdItem chartLine' style={{height: `3%`}}></div>
 
                                 {/* 手順 */}
-                                {element?.task?.map((t, tIndex) => {
+                                {element?.task?.map(t => {
                                     if (t != undefined) {
                                         // クラス指定用
                                         var c = "gridItem ";
@@ -130,14 +135,25 @@ function CookProcess() {
                                             break;
                                         }
 
-                                        return(
-                                            <div key={t.taskId} className={c} 
-                                            style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                            onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
-                                                {t.taskName != "空き時間" ? t.taskName : null}
-                                            </div>
-                                        )
+                                        // 各手順に遷移先設定
+                                        if (t.taskName == "空き時間") {
+                                            // 棒線
+                                            return(
+                                                <div key={t.taskId} className={c} style={{height : `${t.useTime / chartData.totalTime * 100}%`}}></div>
+                                            )
+                                        }else{
+                                            // 手順
+                                            return(
+                                                <div key={t.taskId} className={c} 
+                                                style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
+                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
+                                                    {t.taskName != "空き時間" ? t.taskName : null}
+                                                </div>
+                                            )
+                                        }
+                                        
                                     }else{
+                                        // エラー防止用にnullを返す
                                         return null
                                     }
                                 })}
