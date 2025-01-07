@@ -40,7 +40,7 @@ function StepsDetail() {
         
         <div className='App'>
             <header>
-                <div className='backBtn' onClick={() => navigate('/')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/cookProcess')}>＜</div>
                 <div id='pageTitle'>{title}</div>
             </header>
 
