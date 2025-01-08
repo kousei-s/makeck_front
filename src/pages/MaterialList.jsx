@@ -79,8 +79,13 @@ const data = [
                     {data.map((item, i) => 
                     <div className="item" key={i}>  {/*パフォーマンス向上のためらしい*/}
                     {console.log("インデックス番号:", i, "要素:", item)}
-                        <div className='title' onClick={() => toggle(i)}>         
-                        <h2 className="materialname">{item.materialname}</h2>
+                        <div className='title' onClick={() => toggle(i)}>  
+
+                        {/*料理名*/}
+                        <div className="materialname">
+                            {item.materialname}
+                        </div>
+
                         {/* 表示、非表示を切り替えるボタン */}
                         <span>{selected === i ? "-" : "+"}</span>
                         </div>

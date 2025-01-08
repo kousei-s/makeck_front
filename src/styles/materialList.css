@@ -11,35 +11,46 @@
   }
   
   .item {
-    
+    margin-top: 20px;
     /* background: #f0ebe1; */
     /* margin-bottom: 5px;
     padding: 10px, 20px; */
-  } 
+  }  
   
   .title {
     border-bottom: 2px solid var(--main-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* 下に影をつける */
     margin-bottom: 8px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between;  /*横方向に等間隔で配置される(最初の要素は左端、最後は右端)*/
+    align-items: center;             /*縦方向で子要素を配置する 子要素の縦位置を中央*/
     cursor: pointer;
   }
   
-  .content {
+  /* アコーディオンリスト(閉) */
+  .content {  
     /* color: #8b7f75; */
-    max-height: 0;
-    overflow: hidden;
+    max-height: 0;      /*最大高さ0(コンテンツを非表示にするため)*/
+    overflow: hidden;   /*要素の内容が要素の境界を超えるときにその部分を非表示にする(今回は高さmax０なのでコンテンツが溢れないようにする)*/
     transition: all 0.5s cubic-bezier(0.1, 0.1);
+    /*all　すべてのプロパティに適用*/
+    /*0.5s アニメーション所要時間*/
+    /*cubic-bezier(0.1, 0.1) アニメーションの速度曲線を指定*/
   }
   
+  /* アコーディオンリスト(開) */
   .content.show {
     height: auto;
     max-height: 9999px;
     transition: all 0.5s cubic-bezier(1.0, 1.0);
   }
 
+  /* 料理名 */
   .materialname {
-    font-family: "Paprika";
+    /* margin-top: 40px; */
+    margin-left: 6px;
+    font-size: large;
+    font-weight: 800;
+    color: var(----accent-color);
+    font-family: "Paprika",sans-serif !important;
   }
