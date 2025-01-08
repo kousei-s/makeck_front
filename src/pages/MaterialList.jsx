@@ -30,9 +30,24 @@ const data = [
             "赤唐辛子",
             "オリーブ油(サラダ油)",
             "塩、故障",
-
-        ]
-    
+        ],
+        number: [
+            "4",
+            "420",
+            "1",
+            "1",
+            "2",
+            "1"
+        ],
+        unit: [
+            "本",
+            "g",
+            "かけ",
+            "本",
+            "大匙",
+            "つまみ"
+        ],  
+        
     },
     {
       materialname: "イカのリゾット",
@@ -87,7 +102,7 @@ const data = [
                         </div>
 
                         {/* 表示、非表示を切り替えるボタン */}
-                        <span>{selected === i ? "-" : "+"}</span>
+                        <span>{selected === i ? <img src={images.closeButton}/> : <img src={images.openButton}/>}</span>
                         </div>
                         <div 
                         className={

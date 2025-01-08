@@ -30,6 +30,10 @@ const images = {
     fishFruitAnkake : "./src/assets/images/fishFruitAnkake.png",  //魚のフルーツあんかけ
     MeatPotatoes : "./src/assets/images/MeatPotatoes.png",        //変わり肉じゃが
     asuparaSoup : "./src/assets/images/asuparaSoup.png",          //アスパラガスのスープ
+
+    openButton : "./src/assets/images/openButton.png",            //アコーディオンリストのオープンボタン
+    closeButton : "./src/assets/images/closeButton.png",          //アコーディオンリストのクローズボタン
+
     
 };
 
