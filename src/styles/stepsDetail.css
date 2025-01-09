@@ -81,7 +81,7 @@
     text-align: right;
 }
 
-#method {
+#descContainer {
     margin: 6% auto 2%;
     display: flex;
     width: 100%;
@@ -91,15 +91,12 @@
     box-shadow:                         /* 影 */
         3px 3px 4px rgba(224, 212, 212, 0.25),
         -2px -2px 10px rgba(224, 212, 212, 0.25);
+    min-height: 20vh;
 }
 
 .paragraph {
     width: 100%;
     font-size: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: left;
     text-align: left;
-    margin: 4% 2rem 0;
+    margin: 1rem 1.5rem ;
 }
