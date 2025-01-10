@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import images from '../hooks/images';
+import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 
 // ハリボテデータ
 var haribote = [{
@@ -61,6 +62,10 @@ function StepsDetail() {
         "ああああああああああああああああああああああああああああああああああああいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいううううううううううううううううううううううえええええええええええええええええええええええええええええええ"
     ]
 
+    // 詳細データ取得
+    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/info");
+    const detail = data;
+
     return (
         
         <div className='App'>
@@ -72,8 +77,8 @@ function StepsDetail() {
             <main>
                 {/* 調理手順番号、料理名 */}
                 <div id='stepTitle'>
-                    <div id='stepNumber'>{haribote[0].displayName}</div>
-                    <div id='stepName'>{haribote[0].recipeName}</div>
+                    <div id='stepNumber'>{data?.displayName}</div>
+                    <div id='stepName'>{data?.recipeName}</div>
                 </div>
 
                 {/* 材料一覧 */}
@@ -83,11 +88,12 @@ function StepsDetail() {
                         <div className='captionBorder'></div>
                     </div>
                     <div className='materialList'>
-                        {haribote[0].materials.map((material, index) => {
+                        {data?.materials.map((material, index) => {
+                            console.log('material : ', material)
                             return(
                                 <div className='material' key={index}>
                                     <div className='materialName'>{material.name}</div>
-                                    <div className='quantity'>{material.quantity }</div>
+                                    <div className='quantity'>{material.quantity}</div>
                                 </div>
                             )
                         })}
@@ -101,7 +107,7 @@ function StepsDetail() {
                         <div className='captionBorder'></div>
                     </div>
                     <div id='descContainer'>
-                        <div className='paragraph'>{haribote[0].description}</div>
+                        <div className='paragraph'>{data?.description}</div>
                     </div>
                 </div>
             </main>
