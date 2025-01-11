@@ -54,3 +54,20 @@
     color: var(----accent-color);
     font-family: "Paprika",sans-serif !important;
   }
+
+  /* 各行の下線 */
+  .materialBr {
+    font-size:larger ;
+    font-weight: 600;
+    border-bottom: 1px solid #DAD7D7;
+    display: flex;
+  }
+
+  /*  */
+  .pMaterial {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    justify-content: space-between;
+    
+  }
