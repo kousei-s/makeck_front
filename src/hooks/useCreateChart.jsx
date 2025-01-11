@@ -19,6 +19,7 @@ const useCreateChart = (menuData) => {
         // 4品のID
         var uids = []
         menus.recipies.forEach((element) => {
+          console.log(element)
           uids.push(element.Uid)
         })
 
@@ -38,7 +39,7 @@ const useCreateChart = (menuData) => {
           // メニュー4品
           menu : 
             recipies.map((element, index) => {
-              var menuId = element.Uid
+              var menuId = element.Uid;
               return({
                 // メニューID
                 uid : menuId,

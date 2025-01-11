@@ -1,5 +1,31 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import images from '../hooks/images';
+import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
+
+// ハリボテデータ
+var haribote = [{
+    "recipeName": "フランクフルトのソテー",
+    "displayName": "調理2",
+    "materials": [
+        {
+            "name": "フランクフルト",
+            "quantity": "200g"
+        },
+        {
+            "name": "オリーブオイル",
+            "quantity": "大さじ2"
+        },
+        {
+            "name": "塩",
+            "quantity": "少々"
+        },
+        {
+            "name": "黒こしょう",
+            "quantity": "少々"
+        }
+    ],
+    "description": "フライパンにオリーブオイルを熱し、フランクフルトを入れて焼き色がつくまで炒め、塩と黒こしょうで味を調えます。"
+}]
 
 function StepsDetail() {
     // 手順ID受取
@@ -36,6 +62,10 @@ function StepsDetail() {
         "ああああああああああああああああああああああああああああああああああああいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいううううううううううううううううううううううえええええええええええええええええええええええええええええええ"
     ]
 
+    // 詳細データ取得
+    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/info");
+    const detail = data;
+
     return (
         
         <div className='App'>
@@ -47,8 +77,8 @@ function StepsDetail() {
             <main>
                 {/* 調理手順番号、料理名 */}
                 <div id='stepTitle'>
-                    <div id='stepNumber'>調理{stepNumber}</div>
-                    <div id='stepName'>{menuName}</div>
+                    <div id='stepNumber'>{data?.displayName}</div>
+                    <div id='stepName'>{data?.recipeName}</div>
                 </div>
 
                 {/* 材料一覧 */}
@@ -58,11 +88,12 @@ function StepsDetail() {
                         <div className='captionBorder'></div>
                     </div>
                     <div className='materialList'>
-                        {materials.map((material, index) => {
+                        {data?.materials.map((material, index) => {
+                            console.log('material : ', material)
                             return(
                                 <div className='material' key={index}>
                                     <div className='materialName'>{material.name}</div>
-                                    <div className='quantity'>{material.quantity }</div>
+                                    <div className='quantity'>{material.quantity}</div>
                                 </div>
                             )
                         })}
@@ -75,12 +106,8 @@ function StepsDetail() {
                         <div className='captionText'>調理方法</div>
                         <div className='captionBorder'></div>
                     </div>
-                    <div id='method'>
-                        {methodText.map((text, index) => {
-                            return(
-                                <div className='paragraph' key={index}>{text}</div>
-                            )
-                        })}
+                    <div id='descContainer'>
+                        <div className='paragraph'>{data?.description}</div>
                     </div>
                 </div>
             </main>
