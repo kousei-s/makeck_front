@@ -8,7 +8,7 @@ import "../loader.css";
 const cookingTime = 90;
 
 // 献立リスト
-const menus = [
+let menus = [
     {
         name : "田舎風トリのから揚げ",
         category : "主食",
@@ -34,6 +34,20 @@ const menus = [
 function MenuConfirmation() {
     // 画面遷移用フック
     const navigate = useNavigate();
+
+    // 選択中のレシピを取得
+    const select_state = window.localStorage.getItem("select_key");
+
+    // json にする
+    JSON.parse(select_state).forEach((value, index) => {
+        if (value !== "") {
+            menus[index] = {
+                name : value["name"],
+                category : "",
+                image : `https://makeck.tail6cf7b.ts.net:8030/recipe/images/${value["id"]}.jpg`
+            };
+        }
+    })
 
     // ページ名
     const title = "献立確認";

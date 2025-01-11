@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useMenuData = (url) => {
+const useMenuData = (url, category) => {
   // 状態を定義
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,12 +11,20 @@ const useMenuData = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true); // ローディング開始
-        const response = await fetch(url); // APIリクエスト
+        const response = await fetch(url,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "category" : category
+          }),
+        }); // APIリクエスト
         if (!response.ok) {
           throw new Error(`HTTPエラー: ${response.status}`);
         }
         const result = await response.json(); // JSONを取得
-        setData(result); // データを状態に保存
+        setData(result["result"]); // データを状態に保存
       } catch (err) {
         setError(err.message); // エラーを状態に保存
       } finally {

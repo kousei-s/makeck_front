@@ -4,12 +4,12 @@ import images from '../hooks/images';
 import { useState } from "react";
 import TestDialog from './TestDialog';
 import useMenuData from '../hooks/useMenuData';
+import { APIURL, RecipeURL } from "../config";
 // import Swal from "sweetalert2";
 
 export default function RecipeSelection() {
 
     const navigate = useNavigate();   //遷移のやつだよ
-
 
     // カスタムダイアログ表示、非表示管理
     const [testDialogOpen, setTestDialogOpen] = useState(false);
@@ -20,8 +20,6 @@ export default function RecipeSelection() {
     const buttonClickHome = () => {
         setTestDialogOpen(true);
     };
-
-
 
     {/*ヘッダーの名前変更*/ }
     const headerNames = [
@@ -72,7 +70,7 @@ export default function RecipeSelection() {
         window.location.reload();
     };
 
-    const handleCard = (cardid) => {
+    const handleCard = (cardid,name) => {
         console.log(cardid);
         // Swal.fire({
         //     title: "レシピ追加",
@@ -81,7 +79,10 @@ export default function RecipeSelection() {
         //     timer: 1000,               // 3秒後にアラートを自動で消す
         // });
 
-        selectsData[now_state] = String(cardid);
+        selectsData[now_state] = {
+            id : String(cardid),
+            name : name,
+        };
 
         // localstorage に保存
         localstroage.setItem(select_state, JSON.stringify(selectsData));
@@ -109,7 +110,7 @@ export default function RecipeSelection() {
 
     // メニューデータ取得
     //主食
-    var { data, loading, error } = useMenuData(`https://makeck.mattuu.com/api/${headerNames[now_state]["apipath"]}`)
+    var { data, loading, error } = useMenuData(`${RecipeURL}/search_category`, headerNames[now_state].name);
     var menus = data ? data : [];
     console.log(menus);
 
@@ -154,7 +155,7 @@ export default function RecipeSelection() {
                         menus.map((menu, index) => {
                             return (
                                 <div className="menuWrapper" key={index}>
-                                    <div className="menu" onClick={() => handleCard(menu.id)}>
+                                    <div className="menu" onClick={() => handleCard(menu.id,menu.name)}>
                                         <img className="menuImage" src={menu.image} alt="menuImage" />
                                         <div className="menuName">{menu.name}</div>
                                     </div>
