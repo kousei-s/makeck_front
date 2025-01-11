@@ -43,7 +43,7 @@ function MenuConfirmation() {
         if (value !== "") {
             menus[index] = {
                 name : value["name"],
-                category : "",
+                category : value["type"],
                 image : `https://makeck.tail6cf7b.ts.net:8030/recipe/images/${value["id"]}.jpg`
             };
         }

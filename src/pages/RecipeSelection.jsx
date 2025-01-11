@@ -82,6 +82,7 @@ export default function RecipeSelection() {
         selectsData[now_state] = {
             id : String(cardid),
             name : name,
+            type: headerNames[now_state].name
         };
 
         // localstorage に保存
