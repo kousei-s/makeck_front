@@ -1,37 +1,39 @@
-import { useNavigate } from 'react-router-dom';
+// 各種インポート
+import { useNavigate } from 'react-router-dom';         // 画面遷移
 
-import useMenuData from '../hooks/useMenuData';
-import useCreateChart from '../hooks/useCreateChart';
-import images from '../hooks/images';
-import { height } from '@mui/system';
+import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
+import useCreateChart from '../hooks/useCreateChart';   // チャート用データ整形
 
 function CookProcess() {
-    const navigate = useNavigate();
+    const navigate = useNavigate();                     // 遷移用インスタンス
 
-    // メニューデータ取得
+    // メニューデータ取得 (4品分献立、カテゴリー*3)
     const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
+    const { data: syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
+    const { data: syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
+    const { data: sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
     const menus = data ? data : "";
-    // console.log(`menus : \n`, menus);
+    console.log(`menus : \n`, menus);
 
-    // チャート生成
-    const { chart, chartError } = useCreateChart(menus? menus : null); // すべてのチャートを一括生成
+    // カテゴリ別データ
+    var categorys = [syusyoku, syusai, sirumono];
+    
+    // チャート用データ整形
+    const { chart, chartError } = useCreateChart(menus? menus : null);
     var chartData = chart? chart : null
 
+    // エラーチェック用変数 (読み込み、エラー)
+    var loadState = loading || syusyokuLoading || syusaiLoading || sirumonoLoading;
+    var errorState = error || syusyokuError || syusaiError || sirumonoError || chartError;
+    
     // 次のページ
     const nextPage = {
         title: "調理完了",
         path: "/",
     };
 
-    // 画像パス
-    const menuImages = [
-        "https://makeck.mattuu.com/images/ce9c3514d8434f92b0675562466b0284.jpg",
-        "https://makeck.mattuu.com/images/0d8a47e782c1443295147446a33fa1d0.jpg",
-        "https://makeck.mattuu.com/images/16f14a5052b0469eb4e84b7bea0d71b3.jpg",
-        "https://makeck.mattuu.com/images/523b0de0afda489a964af67918b6b185.jpg",
-    ];
-
-    if (error || chartError) {
+    // エラー発生時
+    if (errorState) {
         return (
             <div className='App noScroll'>
                 <header>
@@ -46,7 +48,8 @@ function CookProcess() {
         )
     }
 
-    if (loading) {
+    // 読み込み時
+    if (loadState) {
         return (
             <div className='App noScroll'>
                 <header>
@@ -58,6 +61,7 @@ function CookProcess() {
         )
     }
 
+    // 正常時
     return (
         <div className='App noScroll'>
             <header>
@@ -83,14 +87,45 @@ function CookProcess() {
                 {/* 献立画像コンテナ */}
                 <div id='imagesBorder'>
                     <div id='imageContainer'className='grid'>
-                        {/* 画像配列をmapで回して表示 */}
-                        {menuImages.map((image, index) => {
-                            return ( 
-                                <div key={index} className='imageWrapper'>
-                                    <img src={image} className='gridItem' alt="料理画像"></img>
-                                </div>
-                            )
-                        })}
+                        {   // 1品ずつ画像表示
+                            chartData?.menu?.map((element, index) => {
+                                // 画像パス
+                                var targetPath = null;
+
+                                // 検索対象
+                                var targetName = element.name.normalize("NFC");
+                                console.log("検索対象: "+ targetName);
+
+                                // メニュー名から検索
+                                // カテゴリー毎
+                                for (const category of categorys) {
+                                    // カテゴリー内から1品ずつ比較
+                                    for (const item of category) {
+                                        console.log(`比較中: targetName="${targetName}", item.name="${item.name}"`);
+                                        
+                                        // 一致したら終了
+                                        if (targetName == item.name.normalize("NFC")) {
+                                            console.log("発見: " + item.name);
+                                            targetPath = item.image;
+                                            break;
+                                        }
+                                    }
+                                    if (targetPath) break;
+                                }
+
+                                // 見つからなかった場合 (デバッグ用)
+                                if (!targetPath) {
+                                    console.log(`未発見: ${targetName}`);
+                                }
+
+                                // 画像表示処理
+                                return ( 
+                                    <div key={`menuImage-${index}`} className='imageWrapper'>
+                                        <img src={targetPath} className='gridItem' alt="献立画像"></img>
+                                    </div>
+                                )
+                            }
+                        )}
                     </div>
                 </div>
                 
@@ -108,7 +143,7 @@ function CookProcess() {
                                 <div key={`${element.uid}-start`} className='girdItem chartLine' style={{height: `3%`}}></div>
 
                                 {/* 手順 */}
-                                {element?.task?.map((t, tIndex) => {
+                                {element?.task?.map(t => {
                                     if (t != undefined) {
                                         // クラス指定用
                                         var c = "gridItem ";
@@ -130,20 +165,31 @@ function CookProcess() {
                                             break;
                                         }
 
-                                        return(
-                                            <div key={t.taskId} className={c} 
-                                            style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                            onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
-                                                {t.taskName != "空き時間" ? t.taskName : null}
-                                            </div>
-                                        )
+                                        // 各手順に遷移先設定
+                                        if (t.taskName == "空き時間") {
+                                            // 棒線
+                                            return(
+                                                <div key={t.taskId} className={c} style={{height : `${t.useTime / chartData.totalTime * 100}%`}}></div>
+                                            )
+                                        }else{
+                                            // 手順
+                                            return(
+                                                <div key={t.taskId} className={c} 
+                                                style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
+                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
+                                                    {t.taskName != "空き時間" ? t.taskName : null}
+                                                </div>
+                                            )
+                                        }
+                                        
                                     }else{
+                                        // エラー防止用にnullを返す
                                         return null
                                     }
                                 })}
 
                             {/* フッターとの間隔確保 */}
-                            <div key={`${element.uid}-end`} className='girdItem chartLine' style={{height: `3%`}}></div>
+                            <div key={`${element.uid}-end`} className='girdItem chartLine' style={{height: `10%`}}></div>
                             </div>
                         )
                     })}
