@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/statics/front/'>
+      <Router basename='/app/'>
         {/* ルートの定義 */}
         <Routes>
           <Route path="/" element={<Home />} />
