@@ -16,6 +16,8 @@ export default function RecipeSelection() {
 
     const [selectsData, setSelects] = useState(["", "", "", ""]);
 
+    const [now_menus, setMenus] = useState([]);
+
     // ダイアログ表示ボタンクリック処理
     const buttonClickHome = () => {
         setTestDialogOpen(true);
@@ -70,7 +72,7 @@ export default function RecipeSelection() {
         window.location.reload();
     };
 
-    const handleCard = (cardid,name) => {
+    const handleCard = (cardid, name) => {
         console.log(cardid);
         // Swal.fire({
         //     title: "レシピ追加",
@@ -80,13 +82,36 @@ export default function RecipeSelection() {
         // });
 
         selectsData[now_state] = {
-            id : String(cardid),
-            name : name,
+            id: String(cardid),
+            name: name,
             type: headerNames[now_state].name
         };
 
         // localstorage に保存
         localstroage.setItem(select_state, JSON.stringify(selectsData));
+    }
+
+    async function submitSearch(event) {
+        event.preventDefault();
+
+        const req = await fetch(`${RecipeURL}search`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: event.target.search.value,
+                category: headerNames[now_state].name
+            }),
+        });
+
+        const res = await req.json();
+        const data = res.result;
+
+        const menus = data ? data : [];
+        console.log(`menus : \n`, menus);
+        setMenus(menus);
+
     }
 
     const [initloading, setInitLoading] = useState(true);
@@ -104,16 +129,30 @@ export default function RecipeSelection() {
         if (now_selected) {
             setSelects(JSON.parse(now_selected));
         }
+
+        // メニューデータ取得
+        //主食
+        fetch(`${RecipeURL}/search_category`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                category: headerNames[now_state].name
+            }),
+        }).then(res => res.json()).then(
+            (result) => {
+                setMenus(result.result);
+            },
+            (error) => {
+                console.log('error', error);
+            }
+        );
+
+
         // 初期化済みのフラグを立てる
         setInitLoading(false);
     }, [initloading]);
-
-
-    // メニューデータ取得
-    //主食
-    var { data, loading, error } = useMenuData(`${RecipeURL}/search_category`, headerNames[now_state].name);
-    var menus = data ? data : [];
-    console.log(menus);
 
     return (
         <div className="App">
@@ -128,8 +167,8 @@ export default function RecipeSelection() {
 
                 {/*検索フォーム*/}
                 <div className="Form">
-                    <form>
-                        <input className="FormDesign" type="text" search="search" placeholder="キーワード検索" />
+                    <form onSubmit={submitSearch}>
+                        <input className="FormDesign" type="text" search="search" name="search" placeholder="キーワード検索" />
                     </form>
                 </div>
 
@@ -153,10 +192,10 @@ export default function RecipeSelection() {
                 {/*レシピ選択コンテナ*/}
                 <div id="recipeChoiceContainer">
                     {
-                        menus.map((menu, index) => {
+                        now_menus.map((menu, index) => {
                             return (
                                 <div className="menuWrapper" key={index}>
-                                    <div className="menu" onClick={() => handleCard(menu.id,menu.name)}>
+                                    <div className="menu" onClick={() => handleCard(menu.id, menu.name)}>
                                         <img className="menuImage" src={menu.image} alt="menuImage" />
                                         <div className="menuName">{menu.name}</div>
                                     </div>
@@ -199,3 +238,4 @@ export default function RecipeSelection() {
     );
 
 }
+
