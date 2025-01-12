@@ -12,19 +12,13 @@ const useMenuData = (url, category) => {
       try {
         setLoading(true); // ローディング開始
         const response = await fetch(url,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            "category" : category
-          }),
+          method: "GET",
         }); // APIリクエスト
         if (!response.ok) {
           throw new Error(`HTTPエラー: ${response.status}`);
         }
         const result = await response.json(); // JSONを取得
-        setData(result["result"]); // データを状態に保存
+        setData(result); // データを状態に保存
       } catch (err) {
         setError(err.message); // エラーを状態に保存
       } finally {
