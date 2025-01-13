@@ -1,6 +1,8 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import images from '../hooks/images';
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
+import "../config";
+import { APIURL, RecipeURL } from '../config';
 
 // ハリボテデータ
 var haribote = [{
@@ -63,7 +65,7 @@ function StepsDetail() {
     ]
 
     // 詳細データ取得
-    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/info");
+    const { data, loading, error } = useMenuData(RecipeURL + id);
     const detail = data;
 
     return (
