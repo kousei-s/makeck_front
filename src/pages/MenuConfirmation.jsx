@@ -39,6 +39,7 @@ function MenuConfirmation() {
 
     // 料理データ
     var selectMenus = []
+    var selectImages = [];
 
     selectId?.forEach((element, index) => {
         console.log(`id: ${element} を検索`);
@@ -48,6 +49,7 @@ function MenuConfirmation() {
                 // 一致したら終了
                 if (element == item.id.normalize("NFC")) {
                     console.log("発見: " + item.name);
+                    selectImages.push(item.image);
                     selectMenus.push(item);
                     console.log(item);
                     return true;
@@ -57,7 +59,8 @@ function MenuConfirmation() {
     });
 
     console.log(selectMenus);
-
+    localStorage.setItem("select_image", JSON.stringify(selectImages));
+    
     // ページ名
     const title = "献立確認";
 
