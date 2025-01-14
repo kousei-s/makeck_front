@@ -194,10 +194,19 @@ function CookProcess() {
                         )
                     })}
                 </div>
+                <dialog id='cookFinDialog' onClick={() => navigate(nextPage.path)}>                    <div id='dialogContainer'>
+                        <div id='dialogLine'>
+                            <div id='dialogTitle'>調理完了</div>
+                            <div id='dialogText'>お疲れさまでした！</div>
+                        </div>
+                    </div>
+                    <div id='closeText'>タップで閉じる</div>
+                </dialog>
             </main>
 
         <footer id='decisionFooter'>
-            <button type='button' id='decisionBtn' onClick={() => navigate(nextPage.path)}>{nextPage.title}</button>
+            <button type='button' id='decisionBtn' onClick={() => cookFinDialog.showModal()}>{nextPage.title}</button>
+            {/* <button type='button' id='decisionBtn' onClick={() => navigate(nextPage.path)}>{nextPage.title}</button> */}
         </footer>
         </div>
     )
