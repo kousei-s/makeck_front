@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import "../loader.css";
+import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 
 // import images from '../hooks/images';
 
@@ -10,30 +11,52 @@ const cookingTime = 85;
 // 献立リスト
 const menus = [
     {
-        name : "田舎風トリのから揚げ",
         category : "主食",
-        image : "https://makeck.mattuu.com/images/ce9c3514d8434f92b0675562466b0284.jpg"
     },
     {
-        name : "ジャガイモのカリカリ",
         category : "主菜",
-        image : "https://makeck.mattuu.com/images/0d8a47e782c1443295147446a33fa1d0.jpg"
     },
     {
-        name : "きゅうりの四川風ピクルス",
         category : "副菜",
-        image : "https://makeck.mattuu.com/images/16f14a5052b0469eb4e84b7bea0d71b3.jpg"
     },
     {
-        name : "アスパラのクリームスープ",
         category : "汁物",
-        image : "https://makeck.mattuu.com/images/523b0de0afda489a964af67918b6b185.jpg"
     }
 ]
 
 function MenuConfirmation() {
     // 画面遷移用フック
     const navigate = useNavigate();
+
+    const { data: syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
+    const { data: syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
+    const { data: sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
+    var categorys = [syusyoku, syusai, sirumono];
+
+    // 選択料理ID
+    const selectId = JSON.parse(localStorage.getItem("select_key"));
+    console.log(selectId);
+
+    // 料理データ
+    var selectMenus = []
+
+    selectId?.forEach((element, index) => {
+        console.log(`id: ${element} を検索`);
+
+        categorys?.forEach((category) => {
+            category?.forEach((item) => {
+                // 一致したら終了
+                if (element == item.id.normalize("NFC")) {
+                    console.log("発見: " + item.name);
+                    selectMenus.push(item);
+                    console.log(item);
+                    return true;
+                }
+            });
+        });
+    });
+
+    console.log(selectMenus);
 
     // ページ名
     const title = "献立確認";
@@ -57,11 +80,11 @@ function MenuConfirmation() {
                 </div>
                 <div id='menuListContainer'>
                     {
-                        menus.map((menu, index) => {
+                        selectMenus.map((menu, index) => {
                             console.log(menu.name);
                             return (
                                 <div className='menuWrapper' key={index}>
-                                    <div className='category'>{menu.category}</div>
+                                    <div className='category'>{menus[index].category}</div>
                                     <div className='border'></div>
                                     <div className='menu'>
                                         <img className='menuImage' src={menu.image}></img>
