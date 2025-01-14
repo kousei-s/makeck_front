@@ -41,8 +41,10 @@
 .menuWrapper {
     width: 50%;
     height: 50%;
+
     margin-bottom: 8%;
     margin-top: -6%;
+
 }
 
 .menuWrapper * {

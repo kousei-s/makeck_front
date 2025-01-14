@@ -63,6 +63,7 @@
     width: 95%;
 }
 
+
 #imagesBorder {
     padding-top: 3%;
     padding-bottom: 3%;
@@ -230,3 +231,29 @@
     font-size: 15px;
     color: var(--base-color);
 }
+
+/* 画像クリック時に表示する吹き出し */
+.balloon {
+    position: relative;
+    width: 240px;
+    height: 30px;
+    padding: 10px;
+    color: #666;
+    background: #fff;
+    text-align: center;
+    -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
+    border-radius: 25px;
+    font: 16px / 2 "游ゴシック";
+  }
+  
+  .balloon::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    border-style: solid;
+    border-width: 0 10px 20px 10px;
+    border-color: transparent transparent #fff transparent;
+  }
+  
