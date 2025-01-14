@@ -168,11 +168,11 @@ export default function RecipeSelection() {
                             const isSelected = selectsData[now_state] === String(menu.id); // 選択状態を判定
                             return (
                                 <div
-                                    className={`menuWrapper ${isSelected ? 'selected' : ''}`}
+                                    className={`menuWrapperR ${isSelected ? 'selected' : ''}`}
                                     key={index}
                                     onClick={() => selectRecipeIdChanger(menu.id)}
                                     >
-                                    <div className="menu" onClick={() => selectRecipeIdChanger(menu.id)}>
+                                    <div className="menuR" onClick={() => selectRecipeIdChanger(menu.id)}>
                                         <div className="imageWrapper">
                                             <img className="menuImage" src={menu.image} alt="menuImage" />
                                             {/*選択中囲みなう*/}
