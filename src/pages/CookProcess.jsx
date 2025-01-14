@@ -15,8 +15,11 @@ function CookProcess() {
     const menus = data ? data : "";
     console.log(`menus : \n`, menus);
 
+    var selectImage = JSON.parse(localStorage.getItem("select_image"));
+    console.log(selectImage);
+
     // カテゴリ別データ
-    var categorys = [syusyoku, syusai, sirumono];
+    // var categorys = [syusyoku, syusai, sirumono];
     
     // チャート用データ整形
     const { chart, chartError } = useCreateChart(menus? menus : null);
@@ -87,7 +90,7 @@ function CookProcess() {
                 {/* 献立画像コンテナ */}
                 <div id='imagesBorder'>
                     <div id='imageContainer'className='grid'>
-                        {   // 1品ずつ画像表示
+                        {/* {   // 1品ずつ画像表示
                             chartData?.menu?.map((element, index) => {
                                 // 画像パス
                                 var targetPath = null;
@@ -121,11 +124,21 @@ function CookProcess() {
                                 // 画像表示処理
                                 return ( 
                                     <div key={`menuImage-${index}`} className='imageWrapper'>
-                                        <img src={targetPath} className='gridItem' alt="献立画像"></img>
+                                        <img src={targetPath} className='gridItem' alt="献立画像" onClick={""}></img>
                                     </div>
                                 )
                             }
-                        )}
+                        )} */}
+                        {
+                            selectImage.map((element, index) => {
+                                console.log(element);
+                                return (
+                                    <div key={`menuImage-${index}`} className='imageWrapper'>
+                                        <img src={element} className='gridItem' alt="献立画像" onClick={""}></img>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
                 
@@ -160,7 +173,7 @@ function CookProcess() {
                                             c += "task finishing";
                                             break;
                                     
-                                        case "空き時間" :
+                                        default :
                                             c += "chartLine";
                                             break;
                                         }
@@ -176,7 +189,9 @@ function CookProcess() {
                                             return(
                                                 <div key={t.taskId} className={c} 
                                                 style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
+                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}
+                                                // onClick={() => { navigate(`/stepsDetail/${t.taskName}`)}}
+                                                >
                                                     {t.taskName != "空き時間" ? t.taskName : null}
                                                 </div>
                                             )
@@ -194,10 +209,24 @@ function CookProcess() {
                         )
                     })}
                 </div>
+                <dialog id='cookFinDialog' onClick={() => {
+                    navigate(nextPage.path);
+                    localStorage.clear();
+                }}>
+
+                        <div id='dialogContainer'>
+                        <div id='dialogLine'>
+                            <div id='dialogTitle'>調理完了</div>
+                            <div id='dialogText'>お疲れさまでした！</div>
+                        </div>
+                    </div>
+                    <div id='closeText'>タップで閉じる</div>
+                </dialog>
             </main>
 
         <footer id='decisionFooter'>
-            <button type='button' id='decisionBtn' onClick={() => navigate(nextPage.path)}>{nextPage.title}</button>
+            <button type='button' id='decisionBtn' onClick={() => cookFinDialog.showModal()}>{nextPage.title}</button>
+            {/* <button type='button' id='decisionBtn' onClick={() => navigate(nextPage.path)}>{nextPage.title}</button> */}
         </footer>
         </div>
     )
