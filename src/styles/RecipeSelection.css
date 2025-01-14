@@ -65,13 +65,34 @@ input::placeholder {
 .menuWrapperR {
     width: 50%;
     height: 50%;
-    margin-bottom: 8%;
-    margin-top: -6%;
-
-    
-    
+    margin-bottom: 13%;
+    margin-top: -6%; 
 }
 
+.menuWrapperR * {
+    margin: auto;
+    width: 90%;
+}
+
+/*メニュー*/
+.menuR {
+    /* margin-top: 19%; 親コンテナのjustify-content: space-between;とぶつかるからけしてる */  
+    height: 225px;  /*%だと変更されなかったためpxにしておりまする*/
+    width: 175px;
+    background-color: rgba(255, 249, 249, 1);
+    box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
+}
+
+.menuR * {
+    width: 100%;
+}
+
+.imageWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* 選択中なう */
 .overlay {
     position: absolute;
     top: 0;
@@ -89,31 +110,9 @@ input::placeholder {
     pointer-events: none; /* オーバーレイがクリックを妨げないように設定 */
 }
 
-
-
-.menuWrapperR * {
-    margin: auto;
-    width: 90%;
+.menuImage {
+    padding-top: 10px;
 }
-
-/*メニュー*/
-.menuR {
-    /* margin-top: 19%; 親コンテナのjustify-content: space-between;とぶつかるからけしてる */  
-    height: 212px;  /*%だと変更されなかったためpxにしておりまする*/
-    width: 175px;
-    background-color: rgba(255, 249, 249, 1);
-    box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
-}
-
-.menuR * {
-    width: 100%;
-}
-
-.imageWrapper {
-    position: relative;
-    display: inline-block;
-}
-
 
 /* メニュー名 */
 .menuName {
@@ -158,6 +157,7 @@ input::placeholder {
 .explanation {
     height: 5px;
     margin-top: -8px;
+    padding-bottom: 10px;
 }
 
 
