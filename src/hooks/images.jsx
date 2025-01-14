@@ -33,6 +33,7 @@ const images = {
 
     openButton : "./src/assets/images/openButton.png",            //アコーディオンリストのオープンボタン
     closeButton : "./src/assets/images/closeButton.png",          //アコーディオンリストのクローズボタン
+    selectNow : "./src/assets/images/selectNow.png",
 
     
 };
