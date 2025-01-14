@@ -5,7 +5,7 @@ import "../loader.css";
 
 
 // 調理時間
-const cookingTime = 90;
+const cookingTime = 85;
 
 // 献立リスト
 const menus = [
