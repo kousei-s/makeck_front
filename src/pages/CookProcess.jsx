@@ -176,8 +176,8 @@ function CookProcess() {
                                             return(
                                                 <div key={t.taskId} className={c} 
                                                 style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                                // onClick={() => navigate(`/stepsDetail/${t.taskId}`)}
-                                                onClick={() => { navigate(`/stepsDetail/${t.taskName}`)}}
+                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}
+                                                // onClick={() => { navigate(`/stepsDetail/${t.taskName}`)}}
                                                 >
                                                     {t.taskName != "空き時間" ? t.taskName : null}
                                                 </div>
@@ -200,7 +200,8 @@ function CookProcess() {
                     navigate(nextPage.path);
                     localStorage.clear();
                 }}>
-                    <div id='dialogContainer'>
+
+                        <div id='dialogContainer'>
                         <div id='dialogLine'>
                             <div id='dialogTitle'>調理完了</div>
                             <div id='dialogText'>お疲れさまでした！</div>
