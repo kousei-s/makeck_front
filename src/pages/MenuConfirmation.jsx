@@ -64,7 +64,7 @@ function MenuConfirmation() {
                 </div>
                 <div id='menuListContainer'>
                     {
-                        selectMenus.map((menu, index) => {
+                        menus.map((menu, index) => {
                             console.log(menu.name);
                             return (
                                 <div className='menuWrapper' key={index}>

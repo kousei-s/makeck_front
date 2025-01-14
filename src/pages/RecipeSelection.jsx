@@ -24,14 +24,18 @@ export default function RecipeSelection() {
     };
 
     //選択中
-    const selectRecipeIdChanger = (cardid) => {
+    const selectRecipeIdChanger = (cardid, name) => {
         console.log(cardid);
-    
+
         // 選択中の状態を設定
         const updatedSelectsData = [...selectsData];
-        updatedSelectsData[now_state] = String(cardid);
+        updatedSelectsData[now_state] = {
+            id: String(cardid),
+            name: name,
+            type: headerNames[now_state].name
+        };
         setSelects(updatedSelectsData);
-    
+
         // localstorage に保存
         localstroage.setItem(select_state, JSON.stringify(updatedSelectsData));
     };
@@ -86,25 +90,6 @@ export default function RecipeSelection() {
         // setSelectedCategory(headerNames[2]);  // 画像が押された時にheaderNames[3]を選択
         window.location.reload();
     };
-
-    const handleCard = (cardid, name) => {
-        console.log(cardid);
-        // Swal.fire({
-        //     title: "レシピ追加",
-        //     icon: "success", // アイコンの種類（success, error, warning, info, question）
-        //     showConfirmButton: false,
-        //     timer: 1000,               // 3秒後にアラートを自動で消す
-        // });
-
-        selectsData[now_state] = {
-            id: String(cardid),
-            name: name,
-            type: headerNames[now_state].name
-        };
-
-        // localstorage に保存
-        localstroage.setItem(select_state, JSON.stringify(selectsData));
-    }
 
     async function submitSearch(event) {
         event.preventDefault();
@@ -207,15 +192,15 @@ export default function RecipeSelection() {
                 {/*レシピ選択コンテナ*/}
                 <div id="recipeChoiceContainer">
                     {
-                        menus.map((menu, index) => {
-                            const isSelected = selectsData[now_state] === String(menu.id); // 選択状態を判定
+                        now_menus.map((menu, index) => {
+                            const isSelected = selectsData[now_state]["id"] === String(menu.id); // 選択状態を判定
                             return (
                                 <div
                                     className={`menuWrapperR ${isSelected ? 'selected' : ''}`}
                                     key={index}
-                                    onClick={() => selectRecipeIdChanger(menu.id)}
-                                    >
-                                    <div className="menuR" onClick={() => selectRecipeIdChanger(menu.id)}>
+                                    onClick={() => selectRecipeIdChanger(menu.id, menu.name)}
+                                >
+                                    <div className="menuR" onClick={() => selectRecipeIdChanger(menu.id, menu.name)}>
                                         <div className="imageWrapper">
                                             <img className="menuImage" src={menu.image} alt="menuImage" />
                                             {/*選択中囲みなう*/}
@@ -223,7 +208,7 @@ export default function RecipeSelection() {
                                         </div>
                                         <div className="menuName">{menu.name}</div>
                                     </div>
-                                        
+
                                 </div>
                             )
                         })
