@@ -120,9 +120,25 @@ function CookProcess() {
 
                                 // 画像表示処理
                                 return ( 
-                                    <div key={`menuImage-${index}`} className='imageWrapper'>
-                                        <img src={targetPath} className='gridItem' alt="献立画像"></img>
-                                    </div>
+                                    <>
+                                        <div id={`balloon-${index}`} className="balloon" style={{display: `none`}}>{targetName}</div>
+                                        <div key={`menuImage-${index}`} className='imageWrapper'>
+                                            <img src={targetPath} className='gridItem' alt="献立画像" onClick={() => {
+                                                // const target = `balloon-${index}`;
+                                                // console.log(target);
+                                                
+                                                // // 吹き出し表示
+                                                // target.style.display = "block";
+
+                                                // // 10秒後非表示
+                                                // setTimeout(() => {
+                                                //     target.style.display = "none";
+                                                // }, 10000)
+
+                                            }}></img>
+                                        </div>
+                                    </>
+                                    
                                 )
                             }
                         )}
@@ -160,7 +176,7 @@ function CookProcess() {
                                             c += "task finishing";
                                             break;
                                     
-                                        case "空き時間" :
+                                        default :
                                             c += "chartLine";
                                             break;
                                         }

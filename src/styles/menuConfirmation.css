@@ -40,8 +40,9 @@
 /* 各料理 */
 .menuWrapper {
     width: 50%;
-    height: 45%;
-    margin-bottom: 2vh;
+    height: 50%;
+    margin-top: -6%;
+    margin-bottom: 8%;
 }
 
 .menuWrapper * {
