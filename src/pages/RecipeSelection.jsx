@@ -21,6 +21,19 @@ export default function RecipeSelection() {
         setTestDialogOpen(true);
     };
 
+    //選択中
+    const selectRecipeIdChanger = (cardid) => {
+        console.log(cardid);
+    
+        // 選択中の状態を設定
+        const updatedSelectsData = [...selectsData];
+        updatedSelectsData[now_state] = String(cardid);
+        setSelects(updatedSelectsData);
+    
+        // localstorage に保存
+        localstroage.setItem(select_state, JSON.stringify(updatedSelectsData));
+    };
+
 
 
     {/*ヘッダーの名前変更*/ }
@@ -152,18 +165,32 @@ export default function RecipeSelection() {
                 <div id="recipeChoiceContainer">
                     {
                         menus.map((menu, index) => {
+                            const isSelected = selectsData[now_state] === String(menu.id); // 選択状態を判定
                             return (
-                                <div className="menuWrapper" key={index}>
-                                    <div className="menu" onClick={() => handleCard(menu.id)}>
-                                        <img className="menuImage" src={menu.image} alt="menuImage" />
+                                <div
+                                    className={`menuWrapper ${isSelected ? 'selected' : ''}`}
+                                    key={index}
+                                    onClick={() => selectRecipeIdChanger(menu.id)}
+                                    >
+                                    <div className="menu" onClick={() => selectRecipeIdChanger(menu.id)}>
+                                        <div className="imageWrapper">
+                                            <img className="menuImage" src={menu.image} alt="menuImage" />
+                                            {/*選択中囲みなう*/}
+                                            {isSelected && <div className="overlay">選択中</div>}
+                                        </div>
                                         <div className="menuName">{menu.name}</div>
                                     </div>
+                                        
                                 </div>
                             )
                         })
                     }
 
                 </div>
+
+                {/* <img className="selectNow" src={images.selectNow} alt="選択中囲み" /> */}
+
+
 
                 {/*レシピ選択中モーダル*/}
                 <div>
