@@ -200,6 +200,7 @@ function CookProcess() {
                     navigate(nextPage.path);
                     localStorage.clear();
                 }}>
+
                         <div id='dialogContainer'>
                         <div id='dialogLine'>
                             <div id='dialogTitle'>調理完了</div>
