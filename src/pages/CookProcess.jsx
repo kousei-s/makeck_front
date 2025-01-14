@@ -176,7 +176,9 @@ function CookProcess() {
                                             return(
                                                 <div key={t.taskId} className={c} 
                                                 style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
-                                                onClick={() => navigate(`/stepsDetail/${t.taskId}`)}>
+                                                // onClick={() => navigate(`/stepsDetail/${t.taskId}`)}
+                                                onClick={() => { navigate(`/stepsDetail/${t.taskName}`)}}
+                                                >
                                                     {t.taskName != "空き時間" ? t.taskName : null}
                                                 </div>
                                             )
