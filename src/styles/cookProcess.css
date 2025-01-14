@@ -100,6 +100,8 @@
 .imageWrapper img {
     width: 90%;
     z-index: 90;
+    margin: 0;
+    margin: auto;
 }
 
 .chartWrappter {
