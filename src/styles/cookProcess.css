@@ -95,9 +95,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .imageWrapper img {
+    margin: 0;
+    margin: auto;
     width: 90%;
     z-index: 90;
 }
