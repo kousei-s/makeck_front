@@ -4,7 +4,7 @@ import images from '../hooks/images';
 import { useState } from "react";
 import TestDialog from './TestDialog';
 import useMenuData from '../hooks/useMenuData';
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 export default function RecipeSelection() {
 
