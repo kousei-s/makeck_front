@@ -40,8 +40,11 @@
 /* 各料理 */
 .menuWrapper {
     width: 50%;
-    height: 45%;
-    margin-bottom: 2vh;
+    height: 50%;
+
+    margin-bottom: 8%;
+    margin-top: -6%;
+
 }
 
 .menuWrapper * {
@@ -70,7 +73,7 @@
 /* メニュー */
 .menu {
     margin-top: 10%;
-    height: 75%;
+    height: 80%;
     background-color: rgba(255, 249, 249, 1);
     box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
     margin-top: 7% !important;

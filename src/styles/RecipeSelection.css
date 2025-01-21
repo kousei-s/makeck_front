@@ -23,23 +23,31 @@ form {
 .FormDesign {
     border: 1px solid #B9B0B0;  /*線の色や太さ*/
     border-radius: 20px;
-    width: 100%;    /*幅*/
-    height: 100%;   /*高さ*/
+    width: 300px;    /*幅*/
+    height: 45px;   /*高さ*/
     opacity: 0.8;   /*要素を60%透明*/
     box-shadow: 0 0 10px #E0D4D4;   /*影*/
     background-image: url(../assets/images/Search.png);
     background-repeat: no-repeat;
     background-position: 17px center ;
+    text-align: left;
+    font-weight: 400;
+    font-size: larger;
+    padding-left: 56px;
+    margin-left: 4px;
+    color: var(--accent-color);
 }
 
 input {
     padding-top: 8px;
+    
 }
 
 input::placeholder {
     color: #AEABAB;     /*文字の色*/
     font-size: 20px;      /*文字サイズ*/  
-    text-align:center;    /*文字水平方向に中央揃え*/
+    /* text-align:;    文字水平方向に中央揃え */
+    padding-left:58px;
 }
 
 /***** レシピ一覧コンテナ *****/
@@ -54,30 +62,56 @@ input::placeholder {
 }
 
 /*各料理*/
-.menuWrapper {
+.menuWrapperR {
     width: 50%;
     height: 50%;
-    margin-bottom: 8%;
-    margin-top: -6%;
-    
+    margin-bottom: 13%;
+    margin-top: -6%; 
 }
 
-
-.menuWrapper * {
+.menuWrapperR * {
     margin: auto;
     width: 90%;
 }
 
 /*メニュー*/
-.menu {
+.menuR {
     /* margin-top: 19%; 親コンテナのjustify-content: space-between;とぶつかるからけしてる */  
-    height: 218px;  /*%だと変更されなかったためpxにしておりまする*/
+    height: 225px;  /*%だと変更されなかったためpxにしておりまする*/
+    width: 175px;
     background-color: rgba(255, 249, 249, 1);
     box-shadow: 0px 3px 4px rgba(144, 131, 131, 0.25);
 }
 
-.menu * {
+.menuR * {
     width: 100%;
+}
+
+.imageWrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* 選択中なう */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    z-index: 10;
+    pointer-events: none; /* オーバーレイがクリックを妨げないように設定 */
+}
+
+.menuImage {
+    padding-top: 10px;
 }
 
 /* メニュー名 */
@@ -123,6 +157,7 @@ input::placeholder {
 .explanation {
     height: 5px;
     margin-top: -8px;
+    padding-bottom: 10px;
 }
 
 
