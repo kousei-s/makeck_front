@@ -123,26 +123,29 @@
     font-family: 'KaiseiOpti-Medium';
     font-size: 13px;
     border-radius: 10px;
-    box-shadow: inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
 .preparation {
     color: #91581B;
     background-color: var(--chart-yellow);
-    box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
 .cooking {
     color: #91391B;
     background-color: var(--chart-red);
-    box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
 .finishing {
     color: #136906;
     background-color: var(--chart-green);
-    box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
+
 .chartLine {
     background-color: var(--base-color);
     content: "";

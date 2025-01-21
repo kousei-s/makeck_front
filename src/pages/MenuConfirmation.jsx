@@ -9,19 +9,8 @@ import useMenuData from '../hooks/useMenuData';         // チャート用デー
 const cookingTime = 85;
 
 // 献立リスト
-const menus = [
-    {
-        category : "主食",
-    },
-    {
-        category : "主菜",
-    },
-    {
-        category : "副菜",
-    },
-    {
-        category : "汁物",
-    }
+const category = [
+    "主食", "主菜", "副菜", "汁物"
 ]
 
 function MenuConfirmation() {
@@ -87,7 +76,7 @@ function MenuConfirmation() {
                             console.log(menu.name);
                             return (
                                 <div className='menuWrapper' key={index}>
-                                    <div className='category'>{menus[index].category}</div>
+                                    <div className='category'>{category[index]}</div>
                                     <div className='border'></div>
                                     <div className='menu'>
                                         <img className='menuImage' src={menu.image}></img>
