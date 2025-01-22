@@ -8,15 +8,16 @@ function CookProcess() {
     const navigate = useNavigate();                     // 遷移用インスタンス
 
     // メニューデータ取得 (4品分献立、カテゴリー*3)
-    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
+    // const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
+    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart2");
     const { data: syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
     const { data: syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
     const { data: sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
     const menus = data ? data : "";
-    console.log(`menus : \n`, menus);
+    // console.log(`menus : \n`, menus);
 
     var selectImage = JSON.parse(localStorage.getItem("select_image"));
-    console.log(selectImage);
+    // console.log(selectImage);
 
     // カテゴリ別データ
     // var categorys = [syusyoku, syusai, sirumono];
@@ -24,6 +25,8 @@ function CookProcess() {
     // チャート用データ整形
     const { chart, chartError } = useCreateChart(menus? menus : null);
     var chartData = chart? chart : null
+
+    console.log(chartData)
 
     // エラーチェック用変数 (読み込み、エラー)
     var loadState = loading || syusyokuLoading || syusaiLoading || sirumonoLoading;
@@ -108,6 +111,7 @@ function CookProcess() {
                     {chartData?.menu?.map((element, index) => {
                         let usedTaskIds = new Set();
 
+                        console.log(`--- ${index+1}品目 ---`)
                         return(
                             // 1品分のチャート
                             <div key={element.uid} className='chartWrapper'
@@ -122,22 +126,11 @@ function CookProcess() {
                                     if (t != undefined) {
                                         // クラス指定用
                                         var c = "gridItem ";
-                                        switch (t.taskName) {
-                                            case "下準備" : 
-                                            c += "task preparation";
-                                            break;
-                                        
-                                        case "調理" :
-                                            c += "task cooking";
-                                            break;
 
-                                        case "仕上げ" :
-                                            c += "task finishing";
-                                            break;
-                                    
-                                        default :
+                                        if (t.type == undefined) {
                                             c += "chartLine";
-                                            break;
+                                        }else{
+                                            c += `task ${t.type}`
                                         }
 
                                         if (usedTaskIds.has(t.taskId)) {
@@ -154,7 +147,6 @@ function CookProcess() {
                                             )
                                         }else{
                                             // 手順(重複防止の判定)
-                                            console.log(t.taskName)
                                             return(
                                                 <div key={t.taskId} className={c} 
                                                 style={{height : `${t.useTime / chartData.totalTime * 100}%`}}
