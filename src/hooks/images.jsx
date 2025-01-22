@@ -35,6 +35,7 @@ const images = {
     closeButton : "./src/assets/images/closeButton.png",          //アコーディオンリストのクローズボタン
     selectNow : "./src/assets/images/selectNow.png",
 
+    speechBubble : "./src/assets/images/speechBubble.png",        // チャート画面レシピ名吹き出し
     
 };
 
