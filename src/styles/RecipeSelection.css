@@ -110,7 +110,7 @@ input::placeholder {
     pointer-events: none; /* オーバーレイがクリックを妨げないように設定 */
 }
 
-.menuImage {
+.menuImageR {
     padding-top: 10px;
 }
 
