@@ -202,7 +202,7 @@ export default function RecipeSelection() {
                                 >
                                     <div className="menuR" onClick={() => selectRecipeIdChanger(menu.id, menu.name)}>
                                         <div className="imageWrapper">
-                                            <img className="menuImage" src={menu.image} alt="menuImage" />
+                                            <img className="menuImageR" src={menu.image} alt="menuImage" />
                                             {/*選択中囲みなう*/}
                                             {isSelected && <div className="overlay">選択中</div>}
                                         </div>
