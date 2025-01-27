@@ -93,7 +93,7 @@ function MenuConfirmation() {
                             console.log(menu.name);
                             return (
                                 <div className='menuWrapper' key={index}>
-                                    <div className='category'>{menus[index].category}</div>
+                                    <div className='category'>{category[index]}</div>
                                     <div className='border'></div>
                                     <div className='menu'>
                                         <img className='menuImage' src={menu.image}></img>

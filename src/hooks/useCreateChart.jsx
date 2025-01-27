@@ -40,6 +40,7 @@ const useCreateChart = (menuData) => {
           menu : 
             recipies.map((element, index) => {
               var menuId = element.Uid;
+              console.log(element.Name);
               return({
                 // メニューID
                 uid : menuId,
@@ -93,10 +94,21 @@ const useCreateChart = (menuData) => {
                       // 手順がある場合
                       startTime = tejun.time+task.startTime
                       endTime = null
+                      var taskType = null;
+
+                      for (let i = 0; i < recipies.length; i++) {
+                        for (let j = 0; j < recipies[i].Divide.length; j++) {
+                          if (recipies[i].Divide[j].Uid === tejun.id){
+                            taskType = recipies[i].Divide[j].Type;
+                            break;  
+                          }
+                        }                        
+                      }
 
                       return({
                         taskId : tejun.id,
                         taskName : tejun.name,
+                        type : taskType,
                         startTime : task.startTime,
                         endTime : tejun.time+task.startTime,
                         useTime : tejun.time
@@ -112,14 +124,15 @@ const useCreateChart = (menuData) => {
 
         result.menu.map(element => {
           console.log(`${element.name}`)
-          // console.log(`UID : ${element.uid}`)
-          // console.log(`最終状態 : ${element.lastState}`)
-          // console.log("手順")
-          // element.task.map((t, tIndex) => {
-          //   if(t != undefined) {
-          //     console.log(`\t${t.taskName}\n\t所要時間 : ${t.useTime}分 (${t.startTime}分～${t.endTime}分)`)
-          //   }
-          // })
+          console.log(`UID : ${element.uid}`)
+          console.log(`最終状態 : ${element.lastState}`)
+          console.log("手順")
+          element.task.map((t, tIndex) => {
+            if(t != undefined) {
+              console.log(t.taskId)
+              console.log(`\t${t.taskName} : ${t.type}\n\t所要時間 : ${t.useTime}分 (${t.startTime}分～${t.endTime}分)`)
+            }
+          })
         });
         
         setChart(result) // データを状態に保存

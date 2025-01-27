@@ -30,6 +30,12 @@ var haribote = [{
 }]
 
 function StepsDetail() {
+    // テスト用データ受取
+    var details = {
+        "displayName" : localStorage.getItem("displayName"),
+        "recipieName" : localStorage.getItem("recipieName")
+    }
+
     // 手順ID受取
     const { id } = useParams();
     console.log("id : ", id);
@@ -50,7 +56,6 @@ function StepsDetail() {
     const detail = data;
 
     return (
-        
         <div className='App'>
             <header>
                 <div className='backBtn' onClick={() => navigate('/cookProcess')}>＜</div>
@@ -60,8 +65,8 @@ function StepsDetail() {
             <main>
                 {/* 調理手順番号、料理名 */}
                 <div id='stepTitle'>
-                    <div id='stepNumber'>{data?.displayName}</div>
-                    <div id='stepName'>{data?.recipeName}</div>
+                    <div id='stepNumber'>{details?.displayName}</div>
+                    <div id='stepName'>{details?.recipieName}</div>
                 </div>
 
                 {/* 材料一覧 */}

@@ -123,26 +123,29 @@
     font-family: 'KaiseiOpti-Medium';
     font-size: 13px;
     border-radius: 10px;
-    box-shadow: inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
-.preparation {
+.prepare {
     color: #91581B;
     background-color: var(--chart-yellow);
-    box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
-.cooking {
+.cook {
     color: #91391B;
     background-color: var(--chart-red);
-    box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
-.finishing {
+.finish {
     color: #136906;
     background-color: var(--chart-green);
-    box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4);
+    box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4),
+        inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
+
 .chartLine {
     background-color: var(--base-color);
     content: "";
@@ -235,27 +238,30 @@
 }
 
 /* 画像クリック時に表示する吹き出し */
-.balloon {
-    position: relative;
-    width: 240px;
-    height: 30px;
-    padding: 10px;
-    color: #666;
-    background: #fff;
-    text-align: center;
-    -webkit-filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
-    border-radius: 25px;
-    font: 16px / 2 "游ゴシック";
-  }
-  
-  .balloon::before {
-    content: "";
-    display: block;
+#speechBubble {
+    z-index: 999;
+    margin: 0;
+    margin: auto;
+
+    height: 100%;
+    width: 130%;
+
     position: absolute;
-    top: -18px;
-    left: 20px;
-    border-style: solid;
-    border-width: 0 10px 20px 10px;
-    border-color: transparent transparent #fff transparent;
-  }
-  
+    top: -90%;
+    left: -10%;
+    display: flex;
+    background-size:cover;
+
+}
+
+/* 吹き出し内テキスト */  
+#bubbleText {
+    /* background-color: #8E8989; */
+    margin: 0;
+    margin: auto 0.2rem;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
