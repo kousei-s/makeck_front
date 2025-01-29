@@ -41,7 +41,7 @@ function MenuConfirmation() {
             menus[index] = {
                 name: value["name"],
                 category: value["type"],
-                image: `https://dev_makeck.mattuu.com/recipe/images/${value["id"]}.jpg`
+                image: `${APIURL}/recipe/images/${value["id"]}.jpg`
             };
 
             recipe_ids.push(value["id"]);
@@ -86,9 +86,9 @@ function MenuConfirmation() {
             <main>
                 <div id='cookingTime' >
                     調理時間目安 : {cookingTime} 分
-                </div> */}
+                </div>
                 <div id='cookingTime'>
-                    {trivia[Math.round(Math.random()*19)]}
+                    {[Math.round(Math.random()*19)]}
                 </div>
                 <div id='menuListContainer'>
                     {
