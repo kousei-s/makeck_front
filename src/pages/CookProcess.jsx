@@ -42,7 +42,7 @@ function CookProcess() {
             <div className='App noScroll'>
                 <header>
                     {/* 戻るボタン */}
-                    <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
+                    <div className='backBtn' onClick={() => navigate('/MaterialList')}>＜</div>
                     <div id='pageTitle'>調理手順</div>
                 </header>
                 <main>
@@ -58,7 +58,7 @@ function CookProcess() {
             <div className='App noScroll'>
                 <header>
                     {/* 戻るボタン */}
-                    <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
+                    <div className='backBtn' onClick={() => navigate('/MaterialList')}>＜</div>
                     <div id='pageTitle'>調理手順</div>
                 </header>
             </div>
@@ -70,7 +70,7 @@ function CookProcess() {
         <div className='App noScroll'>
             <header>
                 {/* 戻るボタン */}
-                <div className='backBtn' onClick={() => navigate('/menuConfirmation')}>＜</div>
+                <div className='backBtn' onClick={() => navigate('/MaterialList')}>＜</div>
                 <div id='pageTitle'>調理手順</div>
             </header>
 
@@ -98,7 +98,7 @@ function CookProcess() {
                                         <div id='speechBubble' className={`bubble-${index}`} style={{backgroundImage: `url(${images.speechBubble})`, display: "none"}}>
                                             <div id='bubbleText'>{chartData?.menu?.[index].name}</div>
                                         </div>
-                                        <img src={element} className='gridItem' alt="献立画像"
+                                        <img src={ element } className='gridItem' alt="献立画像"
                                          onClick={() => {
                                             var bubble = document.getElementsByClassName(`bubble-${index}`);
                                             console.log(bubble);
