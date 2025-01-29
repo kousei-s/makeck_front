@@ -86,6 +86,9 @@ function MenuConfirmation() {
             <main>
                 <div id='cookingTime' >
                     調理時間目安 : {cookingTime} 分
+                </div> */}
+                <div id='cookingTime'>
+                    {trivia[Math.round(Math.random()*19)]}
                 </div>
                 <div id='menuListContainer'>
                     {
