@@ -2,8 +2,28 @@ import { useNavigate } from 'react-router-dom';
 import "../loader.css";
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 
-// import images from '../hooks/images';
-
+// 豆知識(仮データ)
+const trivia = [
+    "オリーブオイルは高温調理より低温で",
+    "魚は皮目から焼くと食感が良くなる",
+    "にんにくを塩で潰すと扱いやすい",
+    "卵白を泡立てるときは乾燥した器具を",
+    "肉を焼く前に水気を拭き取る",
+    "チョコは低温で溶かすと焦げにくい",
+    "野菜は短時間加熱。栄養が保たれやすい。",
+    "スープは野菜を炒めて深い味に。",
+    "ソテーは食材が重ならないように。",
+    "パスタの茹で汁は少量残すとソースが絡む。",
+    "ハーブは最後に加えると風味が良い。",
+    "魚介類は新鮮なものを選ぶ。",
+    "揚げ物は油温を管理して焦げに注意。",
+    "肉を焼くときは指で押して弾力を確認。",
+    "デザートは材料を順に混ぜて均一に。",
+    "ソテーにはバターが良い風味。",
+    "スープは水分量で調整し、煮詰める。",
+    "野菜の皮には栄養がたっぷり",
+    "ケーキは焼きすぎに注意。竹串で確認。"
+];
 
 // 調理時間
 const cookingTime = 85;
@@ -30,7 +50,7 @@ function MenuConfirmation() {
     var selectMenus = []
     var selectImages = [];
 
-    selectId?.forEach((element, index) => {
+    selectId?.forEach((element) => {
         console.log(`id: ${element} を検索`);
 
         categorys?.forEach((category) => {
@@ -67,8 +87,11 @@ function MenuConfirmation() {
             </header>
 
             <main>
-                <div id='cookingTime'>
+                {/* <div id='cookingTime'>
                     調理時間目安 : {cookingTime} 分
+                </div> */}
+                <div id='cookingTime'>
+                    {trivia[Math.round(Math.random()*19)]}
                 </div>
                 <div id='menuListContainer'>
                     {
@@ -96,9 +119,9 @@ function MenuConfirmation() {
                 <button type='button' id='decisionBtn' onClick={() => {
                         // loadscreen 出す
                         document.querySelector('.loader_screen').style.display = "flex"
-                        setTimeout(() => {
-                            navigate('/MaterialList')
-                        }, 3000)
+                        // setTimeout(() => {
+                        //     navigate('/MaterialList')
+                        // }, 3000)
                     }
                 }>手順書作成</button>
             </footer>
