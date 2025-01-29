@@ -41,7 +41,7 @@ function MenuConfirmation() {
             menus[index] = {
                 name: value["name"],
                 category: value["type"],
-                image: `https://makeck.tail6cf7b.ts.net/recipe/images/${value["id"]}.jpg`
+                image: `https://dev_makeck.mattuu.com/recipe/images/${value["id"]}.jpg`
             };
 
             recipe_ids.push(value["id"]);
@@ -93,7 +93,7 @@ function MenuConfirmation() {
                             console.log(menu.name);
                             return (
                                 <div className='menuWrapper' key={index}>
-                                    {/* <div className='category'>{category[index]}</div> */}
+                                    <div className='category'>{menu["category"]}</div>
                                     <div className='border'></div>
                                     <div className='menu'>
                                         <img className='menuImage' src={menu.image}></img>

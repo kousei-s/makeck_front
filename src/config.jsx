@@ -1,4 +1,4 @@
-const APIURL = "https://makeck.tail6cf7b.ts.net/";
+const APIURL = "https://dev_makeck.mattuu.com/";
 // const APIURL = "https://makeck.mattuu.com/";
 
 const RecipeURL = APIURL + "recipe";

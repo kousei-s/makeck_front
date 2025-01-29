@@ -1,4 +1,5 @@
 npm run build
+rm -rf ./app
 mv ./dist ./app
 mkdir -p ./app/src/assets
 cp -r ./src/assets/ ./app/src/assets/
