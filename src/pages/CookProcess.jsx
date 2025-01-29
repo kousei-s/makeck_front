@@ -6,17 +6,37 @@ import images from '../hooks/images';                   // 画像取得
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 import useCreateChart from '../hooks/useCreateChart';   // チャート用データ整形
 import { APIURL } from '../config';
+import React, { useEffect, useState } from 'react';
 
 function CookProcess() {
     const navigate = useNavigate();                     // 遷移用インスタンス
 
     // メニューデータ取得 (4品分献立、カテゴリー*3)
-    // const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
     const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart2");
+    // const { data, loading, error } = getChartData("https://makeck.mattuu.com/api/chart2");
     const { data: syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
     const { data: syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
     const { data: sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
-    const menus = data ? data : "";
+
+    const [menus, setMenus] = useState({});
+    // let menus = {};
+
+    const [initloading, setInitLoading] = useState(true);
+
+    React.useEffect(() => {
+        // すでに初期化されていたら処理を抜ける
+        if (!initloading) {
+            return;
+        }
+
+        // メニューデータ取得
+        //主食
+        setMenus(JSON.parse(localStorage.getItem("chart_key")));
+
+        // 初期化済みのフラグを立てる
+        setInitLoading(false);
+    }, [initloading]);
+    // const menus = 
     // console.log(`menus : \n`, menus);
 
     var selectImage = JSON.parse(localStorage.getItem("select_key"));

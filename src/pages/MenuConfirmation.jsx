@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import "../loader.css";
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 import Marquee from "react-fast-marquee";               // 文字スライド用
+import { APIURL } from '../config';
 
 // 豆知識(仮データ)
 const trivia = [
@@ -107,12 +108,12 @@ function MenuConfirmation() {
             </header>
 
             <main>
-                <div id='cookingTime' >
+                {/* <div id='cookingTime' >
                     調理時間目安 : {cookingTime} 分
-                </div> */}
+                </div>
                 <div id='cookingTime'><Marquee>
-                    {`　　豆知識：${trivia[Math.round(Math.random()*trivia.length)]}`}
-                </Marquee></div>
+                    {`豆知識：${trivia[Math.round(Math.random()*trivia.length)]}`}
+                </Marquee></div> */}
                 
                 <div id='menuListContainer'>
                     {
