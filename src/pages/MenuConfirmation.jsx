@@ -124,9 +124,9 @@ function MenuConfirmation() {
                 <button type='button' id='decisionBtn' onClick={() => {
                         // loadscreen 出す
                         document.querySelector('.loader_screen').style.display = "flex"
-                        // setTimeout(() => {
-                        //     navigate('/MaterialList')
-                        // }, 3000)
+                        setTimeout(() => {
+                            navigate('/MaterialList')
+                        }, 3000)
                     }
                 }>手順書作成</button>
             </footer>
