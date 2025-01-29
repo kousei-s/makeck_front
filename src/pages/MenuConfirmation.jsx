@@ -97,7 +97,7 @@ function MenuConfirmation() {
                         // loadscreen 出す
                         document.querySelector('.loader_screen').style.display = "flex"
                         setTimeout(() => {
-                            navigate('/cookProcess')
+                            navigate('/MaterialList')
                         }, 3000)
                     }
                 }>手順書作成</button>
