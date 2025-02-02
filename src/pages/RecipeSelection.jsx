@@ -116,6 +116,17 @@ export default function RecipeSelection() {
 
     const [initloading, setInitLoading] = useState(true);
 
+    const ConfirmDecision = () => {
+        for (let i = 0; i < selectsData.length; i++) {
+            if (selectsData[i] == "") {
+                alert("選択してください");
+                return;
+            }
+        }
+
+        navigate('/MaterialList');
+    };
+
     React.useEffect(() => {
         // すでに初期化されていたら処理を抜ける
         if (!initloading) {
@@ -245,7 +256,7 @@ export default function RecipeSelection() {
 
             {/*レシピ選択中モーダル内フッター*/}
             <footer id='decisionFooter'>
-                <button type='button' id='decisionBtn' onClick={() => navigate('/menuConfirmation')}>献立決定</button>
+                <button type='button' id='decisionBtn' onClick={ConfirmDecision}>献立決定</button>
             </footer>
 
         </div>

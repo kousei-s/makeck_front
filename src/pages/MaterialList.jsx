@@ -3,6 +3,7 @@ import React from 'react';
 import images from '../hooks/images';
 import { useState } from "react";
 import useMenuData from "../hooks/useMenuData";
+import { APIURL } from "../config";
 
 
 export default function MaterialList() {
@@ -144,9 +145,50 @@ export default function MaterialList() {
     // ]
 
     //材料JSON取得
-    var { data, loading, error } = useMenuData(`https://makeck.mattuu.com/api/materials`)
-    var material = data ? data : [];
-    console.log(material);
+    // var { data, loading, error } = useMenuData(`https://makeck.mattuu.com/api/materials`)
+    // var material = [];
+    const [material, setMaterial] = useState([]);
+    // console.log(material);
+
+    // 選択中のレシピを取得
+    const select_state = window.localStorage.getItem("select_key");
+
+    const [initloading, setInitLoading] = useState(true);
+
+    React.useEffect(() => {
+        // すでに初期化されていたら処理を抜ける
+        if (!initloading) {
+            return;
+        }
+        
+        // レシピID
+        const recipe_ids = [];
+
+        // json にする
+        JSON.parse(select_state).forEach((value, index) => {
+            if (value !== "") {
+                recipe_ids.push(value["id"]);
+            }
+        })
+
+        fetch(`${APIURL}/chart/sermaterials`, {
+            method: "POST", body: JSON.stringify({
+                recipe_ids: recipe_ids
+            }),
+            headers: { "Content-Type": "application/json" }
+        }).then((res) => {
+            if (res.ok) {
+                res.json().then((data) => {
+                    console.log(data);
+                    setMaterial(data);
+                })
+            }
+        });
+
+        // 初期化済みのフラグを立てる
+        setInitLoading(false);
+    }, [initloading]);
+
 
     return (
         <div className="App">
@@ -212,7 +254,7 @@ export default function MaterialList() {
 
             {/*フッター*/}
             <footer id='decisionFooter'>
-                <button type='button' id='decisionBtn' onClick={() => navigate('/cookProcess')}>調理開始！</button>
+                <button type='button' id='decisionBtn' onClick={() => navigate('/MenuConfirmation')}>調理開始！</button>
             </footer>
 
         </div>

@@ -52,7 +52,7 @@ function StepsDetail() {
     const menuName = "フランクフルトのソテー";
 
     // 詳細データ取得
-    const { data, loading, error } = useMenuData(RecipeURL + id);
+    const { data, loading, error } = useMenuData(RecipeURL + "/" + id);
     const detail = data;
 
     return (
