@@ -137,7 +137,7 @@ const useCreateChart = (menuData) => {
         
         setChart(result) // データを状態に保存
       } catch (err) {
-        setError(err.message) // エラーを状態に保存
+        setChartError(err.message) // エラーを状態に保存
       }
     }
 
