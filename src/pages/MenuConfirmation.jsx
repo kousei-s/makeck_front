@@ -37,6 +37,14 @@ const category = [
     "主食", "主菜", "副菜", "汁物"
 ]
 
+// ページ名
+const title = "献立確認";
+
+// 画面向き変更検知イベント
+window.addEventListener('orientationchange', () => {
+    window.location.reload();
+})
+
 function MenuConfirmation() {
     // 画面遷移用フック
     const navigate = useNavigate();
@@ -71,14 +79,26 @@ function MenuConfirmation() {
         });
     });
 
+    // 画面が横になっている場合
+    if (screen.orientation.angle != 0) {
+        return(
+            <div className='App'>
+                <header>
+                    <div className='backBtn' onClick={() => navigate('/RecipeSelection')}>＜</div>
+                    <div id='pageTitle'>{title}</div>
+                </header>
+                <main>
+                    <h1 style={{fontFamily: "KaiseiOpti-Medium"}}>画面を縦にしてください</h1>
+                </main>
+            </div>
+        )
+    }
+
     console.log(selectMenus);
     localStorage.setItem("select_image", JSON.stringify(selectImages));
     
-    // ページ名
-    const title = "献立確認";
-
     return (
-        <div className='App noScroll'>
+        <div className='App noScroll' >
             <div style={{height: "100vh", width: "100vw", display: "none"}} className='loader_screen'>
                 <div>
                     <h2 className='loader_text'>作成中</h2>
@@ -94,9 +114,9 @@ function MenuConfirmation() {
                 {/* <div id='cookingTime'>
                     調理時間目安 : {cookingTime} 分
                 </div> */}
-                <div id='cookingTime'><Marquee>
+                {/* <div id='cookingTime'><Marquee>
                     {`　　豆知識：${trivia[Math.round(Math.random()*trivia.length)]}`}
-                </Marquee></div>
+                </Marquee></div> */}
                 
                 <div id='menuListContainer'>
                     {
