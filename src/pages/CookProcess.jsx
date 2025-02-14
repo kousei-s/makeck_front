@@ -1,10 +1,13 @@
 // 各種インポート
 import { useNavigate } from 'react-router-dom';         // 画面遷移
+import "regenerator-runtime";
 
 import images from '../hooks/images';                   // 画像取得
 
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
 import useCreateChart from '../hooks/useCreateChart';   // チャート用データ整形
+import useVoice from '../hooks/useVoice';               // 音声認識
+import { useEffect } from 'react';
 
 function CookProcess() {
     const navigate = useNavigate();                     // 遷移用インスタンス
@@ -17,6 +20,26 @@ function CookProcess() {
     const { data: sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
     const menus = data ? data : "";
     // console.log(`menus : \n`, menus);
+
+    // 音声認識フック呼び出し
+    const { transcript, listening, startListening, stopListening } = useVoice();
+
+    useEffect(() => {
+        // 音声認識が開始されるときに確認
+        console.log("音声認識状態:", listening);
+
+        // 音声認識が開始されていない場合に開始
+        if (!listening) {
+            startListening();
+        }
+    }, [listening, startListening]);
+
+    // 音声認識結果の更新
+    useEffect(() => {
+        if (transcript) {
+            console.log("音声認識結果: ", transcript);
+        }
+    }, [transcript]);
 
     var selectImage = JSON.parse(localStorage.getItem("select_image"));
 
@@ -120,7 +143,7 @@ function CookProcess() {
                 <div id='chartContainer' className='grid'>
                     {chartData?.menu?.map((element, index) => {
                         let usedTaskIds = new Set();
-                        console.log(`--- ${index+1}品目 ---`)
+                        console.log(`--- ${index+1}品目 ---`);
 
                         return(
                             // 1品分のチャート
