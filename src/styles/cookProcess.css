@@ -121,26 +121,29 @@
 
 .task {
     font-family: 'KaiseiOpti-Medium';
-    font-size: 13px;
-    border-radius: 10px;
+    font-size: 15px;
+    border-radius: 6px;
 }
 
 .prepare {
-    color: #91581B;
+    color: #5F3D06;
+    border: 1px solid #FFB406;
     background-color: var(--chart-yellow);
     box-shadow: inset -4px -4px 6px rgba(141, 142, 55, 0.4),
         inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
 .cook {
-    color: #91391B;
+    color: #6C2209;
+    border: 1px solid #D59368;
     background-color: var(--chart-red);
     box-shadow: inset -4px -4px 6px rgba(142, 55, 55, 0.4),
         inset 8px 8px 20px rgba(255, 248, 248, 0.6);
 }
 
 .finish {
-    color: #136906;
+    color: #123E0B;
+    border: 1px solid #38C770;
     background-color: var(--chart-green);
     box-shadow: inset -4px -4px 6px rgba(55, 142, 113, 0.4),
         inset 8px 8px 20px rgba(255, 248, 248, 0.6);
@@ -167,7 +170,7 @@
 }
 
 #startBar {
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: var(--main-color);
     font-size: 24px;
     width: 100%;

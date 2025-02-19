@@ -12,9 +12,9 @@ export default function CustomDialog({
   isOpen,
   content,
   test_content,
-  confirmButtonLabel,
+  // confirmButtonLabel,
   cancelButtonLabel,
-  onConfirm,
+  //onConfirm,
   onCancel,
 }) {
   return (
@@ -42,13 +42,15 @@ export default function CustomDialog({
           </DialogContentText>
 
         </DialogContent>
-        <div className="dialogContainer">
-          <img src={test_content[0] ? `https://makeck.mattuu.com/images/${test_content[0]}.jpg` : images.selectStapleFood} width={125} height={95} alt="選択中レシピNO主食" />
-          {/* <img src="https://makeck.mattuu.com/images/00e60535e7e545c6a43b3a0baafb9200.jpg" width={125} alt="" /> */}
-          <img src={test_content[1] ? `https://makeck.mattuu.com/images/${test_content[1]}.jpg` : images.selectMainDish} width={125} height={95} alt="選択中レシピNO主菜" />
-          <img src={test_content[2] ? `https://makeck.mattuu.com/images/${test_content[2]}.jpg` : images.selectSideDish} width={125} height={95} alt="選択中レシピNO副菜" />
-          <img src={test_content[3] ? `https://makeck.mattuu.com/images/${test_content[3]}.jpg` : images.selectSoup} width={125} height={95} alt="選択中レシピNO汁物" />
-        </div>
+       
+          <div className="dialogContainer">
+            <img src={test_content[0] ? `https://makeck.mattuu.com/images/${test_content[0]}.jpg` : images.selectStapleFood} width={125} height={95} alt="選択中レシピNO主食" />
+            {/* <img src="https://makeck.mattuu.com/images/00e60535e7e545c6a43b3a0baafb9200.jpg" width={125} alt="" /> */}
+            <img src={test_content[1] ? `https://makeck.mattuu.com/images/${test_content[1]}.jpg` : images.selectMainDish} width={125} height={95} alt="選択中レシピNO主菜" />
+            <img src={test_content[2] ? `https://makeck.mattuu.com/images/${test_content[2]}.jpg` : images.selectSideDish} width={125} height={95} alt="選択中レシピNO副菜" />
+            <img src={test_content[3] ? `https://makeck.mattuu.com/images/${test_content[3]}.jpg` : images.selectSoup} width={125} height={95} alt="選択中レシピNO汁物" />
+          </div>
+        
 
         {/* DialogActionsコンポーネントの利用 */}
         <DialogActions>
