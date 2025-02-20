@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import images from '../hooks/images';
 import useMenuData from '../hooks/useMenuData';         // チャート用データ取得
+import useVoice from '../hooks/useVoice';               // 音声認識
+import { useEffect } from 'react';
 
 // ハリボテデータ
 var haribote = [{
@@ -27,6 +29,8 @@ var haribote = [{
     "description": "フライパンにオリーブオイルを熱し、フランクフルトを入れて焼き色がつくまで炒め、塩と黒こしょうで味を調えます。"
 }]
 
+
+
 function StepsDetail() {
     // テスト用データ受取
     var details = {
@@ -52,6 +56,32 @@ function StepsDetail() {
     // 詳細データ取得
     const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/info");
     const detail = data;
+
+    const { transcript, listening, resetTranscript, startListening, stopListening } = useVoice();
+
+    useEffect(() => {
+        // 音声認識が開始されるときに確認
+        console.log("音声認識状態:", listening);
+
+        // 音声認識が開始されていない場合に開始
+        if (!listening) {
+            startListening();
+        }
+    }, [listening]);
+
+    // 音声認識結果の更新
+    useEffect(() => {
+        if (transcript.trim()) {
+            console.log("音声認識結果: ", transcript);
+
+                if (transcript.trim().replace(/[、。]/g, "") == "戻る") {
+                    navigate('/cookProcess/');
+                }
+    
+                resetTranscript();
+            
+        }
+    }, [transcript]);
 
     return (
         <div className='App'>
