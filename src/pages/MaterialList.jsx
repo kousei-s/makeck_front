@@ -200,7 +200,7 @@ export default function MaterialList() {
             </header>
 
             <main>
-                <div id='cookingTime'>
+                <div id='cookingTime' style={{display: "none"}}>
                     調理時間目安 :  分
                 </div>
 

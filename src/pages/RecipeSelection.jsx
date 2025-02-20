@@ -94,7 +94,7 @@ export default function RecipeSelection() {
     async function submitSearch(event) {
         event.preventDefault();
 
-        const req = await fetch(`${RecipeURL}search`, {
+        const req = await fetch(`${RecipeURL}/search`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
