@@ -12,9 +12,9 @@ export default function CustomDialog({
   isOpen,
   content,
   test_content,
-  confirmButtonLabel,
+  // confirmButtonLabel,
   cancelButtonLabel,
-  onConfirm,
+  //onConfirm,
   onCancel,
 }) {
   return (

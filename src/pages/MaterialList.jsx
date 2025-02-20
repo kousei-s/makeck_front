@@ -228,15 +228,15 @@ export default function MaterialList() {
                                 <p key={index}>{num}</p>
                             ))} */}
                                     {item.materials.map((line, index) => (
-                                        <div className="materialBr">
-                                            <p className="pMaterial" key={index}>
+                                        <div className="material">
+                                            <div className="materialNameP" key={index}> {line.name} </div>
+                                            <div className = "quantityM">{line.quantity || ""} 
+                                                {line.unit || ""}
+                                            </div>
                                                 {/*{line}: 現在のインデックス番号を取得*/}
                                                 {/* {console.log(line.name)} */}
-
-                                                {/*材料名     数量                 単位  で表示*/}
-                                                {line.name} {line.quantity || ""} {line.unit || ""}
                                                 {/* {line} {item.number?.[index] || ""} {item.unit?.[index] || ""} */}
-                                            </p> {/* 各行を段落として表示 */}
+                                            {/* 各行を段落として表示 */}
                                         </div>
                                     ))}
                                 </div>

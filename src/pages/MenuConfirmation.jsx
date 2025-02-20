@@ -49,6 +49,14 @@ let menus = [
     }
 ]
 
+// ページ名
+const title = "献立確認";
+
+// 画面向き変更検知イベント
+window.addEventListener('orientationchange', () => {
+    window.location.reload();
+})
+
 function MenuConfirmation() {
     // 画面遷移用フック
     const navigate = useNavigate();
@@ -95,8 +103,8 @@ function MenuConfirmation() {
     const title = "献立確認";
 
     return (
-        <div className='App noScroll'>
-            <div style={{ height: "100vh", width: "100vw", display: "none" }} className='loader_screen'>
+        <div className='App noScroll' >
+            <div style={{height: "100vh", width: "100vw", display: "none"}} className='loader_screen'>
                 <div>
                     <h2 className='loader_text'>作成中</h2>
                     <span className="loader"></span>
@@ -110,9 +118,9 @@ function MenuConfirmation() {
             <main>
                 {/* <div id='cookingTime' >
                     調理時間目安 : {cookingTime} 分
-                </div>
-                <div id='cookingTime'><Marquee>
-                    {`豆知識：${trivia[Math.round(Math.random()*trivia.length)]}`}
+                </div> */}
+                {/* <div id='cookingTime'><Marquee>
+                    {`　　豆知識：${trivia[Math.round(Math.random()*trivia.length)]}`}
                 </Marquee></div> */}
                 
                 <div id='menuListContainer'>
