@@ -9,6 +9,7 @@ const useVoice = () => {
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
 
+
     // 音声認識が停止した場合に連続して音声認識を開始
     useEffect(() => {
         // 音声認識がサポートされていない場合
