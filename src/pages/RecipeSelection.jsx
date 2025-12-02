@@ -122,9 +122,21 @@ export default function RecipeSelection() {
   // メニューデータ取得
   //主食
   var { data, _loading, _error } = useMenuData(
-    `https://makeck.mattuu.com/api/${headerNames[now_state]["apipath"]}`
+    // `https://dev-makeck.mattuu.com/api/${headerNames[now_state]["apipath"]}`
+    `https://dev-makeck.mattuu.com/recipe/search_category`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        category: headerNames[now_state].name,
+      }),
+    }
   );
-  var menus = data ? data : [];
+  console.log("APIレスポンス内容 >>>", data);
+
+  var menus = data?.result ?? [];
   console.log(menus);
 
   return (

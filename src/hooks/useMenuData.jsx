@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useMenuData = (url) => {
+const useMenuData = (url, options = {}) => {
   // 状態を定義
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,8 @@ const useMenuData = (url) => {
     const fetchData = async () => {
       try {
         setLoading(true); // ローディング開始
-        const response = await fetch(url); // APIリクエスト
+        const response = await fetch(url, options);
+
         if (!response.ok) {
           throw new Error(`HTTPエラー: ${response.status}`);
         }
@@ -25,7 +26,7 @@ const useMenuData = (url) => {
     };
 
     fetchData(); // 関数を呼び出し
-  }, [url]); // URLが変更されるたびに実行
+  }, [url, JSON.stringify(options)]); // URLが変更されるたびに実行
 
   // 他のコンポーネントで使えるように値を返す
   return { data, loading, error };
