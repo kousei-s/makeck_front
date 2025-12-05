@@ -100,23 +100,13 @@ function MenuConfirmation() {
   //   error: _sirumonoError,
   // } = useMenuData("https://makeck.mattuu.com//chart/sermaterials");
   // var categorys = [syusyoku, syusai, sirumono];
-  var categorys = materials || [];
 
   // 選択料理ID
   const selectId = JSON.parse(localStorage.getItem("select_key"));
   const selectImages = JSON.parse(localStorage.getItem("select_image")) || [];
-//   console.log(selectId);
-//   console.log(selectImages);
 
   const selectMenus = selectId.map((id, index) => {
     const matched = materials.find((m) => m.id === id);
-    console.log("select_key:", selectId);
-    console.log(
-      "materials ids:",
-      materials.map((m) => m.id)
-    );
-    console.log("materials", materials);
-
     return {
       id,
       name: matched ? matched.name : "(名前なし)",
@@ -165,11 +155,7 @@ function MenuConfirmation() {
   }
 
   console.log(selectMenus);
-  // localStorage.setItem("select_image", JSON.stringify(selectImages));
-  localStorage.setItem(
-    "select_image",
-    JSON.stringify(selectMenus.map((m) => m.image))
-  );
+  localStorage.setItem("select_image", JSON.stringify(selectMenus.map((m) => m.image)));
 
   return (
     <div className="App noScroll">
