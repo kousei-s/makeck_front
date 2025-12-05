@@ -20,8 +20,8 @@ export default function RecipeSelection() {
   };
 
   //選択中
-  const selectRecipeIdChanger = (cardid) => {
-    console.log(cardid);
+  const selectRecipeIdChanger = (cardid, image) => {
+    console.log(cardid, image);
 
     // 選択中の状態を設定
     const updatedSelectsData = [...selectsData];
@@ -30,6 +30,13 @@ export default function RecipeSelection() {
 
     // localstorage に保存
     localstroage.setItem(select_state, JSON.stringify(updatedSelectsData));
+
+    const selectImages = JSON.parse(
+      localstroage.getItem("select_image") || "[]"
+    );
+    while (selectImages.length < 4) selectImages.push(""); // 空文字で埋める
+    selectImages[now_state] = image || ""; // 今選択中のカテゴリーに対応
+    localstroage.setItem("select_image", JSON.stringify(selectImages));
   };
 
   {
@@ -62,7 +69,7 @@ export default function RecipeSelection() {
 
   const localstroage = window.localStorage;
 
-  let now_state = localstroage.getItem(localkey);
+  let now_state = parseInt(localstroage.getItem(localkey) || "0", 10);
 
   if (!now_state) {
     // header の状態がないとき
@@ -143,7 +150,12 @@ export default function RecipeSelection() {
     <div className="App">
       {/*ヘッダー*/}
       <header>
-        <img src={images.backBtn} className="backBtn" alt="戻るアイコン" onClick={() => navigate("/")} />
+        <img
+          src={images.backBtn}
+          className="backBtn"
+          alt="戻るアイコン"
+          onClick={() => navigate("/")}
+        />
         <div id="pageTitle">{selectedCategory.name}</div>
       </header>
 
@@ -192,11 +204,11 @@ export default function RecipeSelection() {
               <div
                 className={`menuWrapperR ${isSelected ? "selected" : ""}`}
                 key={index}
-                onClick={() => selectRecipeIdChanger(menu.id)}
+                onClick={() => selectRecipeIdChanger(menu.id, menu.image)}
               >
                 <div
                   className="menuR"
-                  onClick={() => selectRecipeIdChanger(menu.id)}
+                  onClick={() => selectRecipeIdChanger(menu.id, menu.image)}
                 >
                   <div className="imageWrapper">
                     <img
