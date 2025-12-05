@@ -6,7 +6,7 @@ import useMenuData from "../hooks/useMenuData";
 
 
 export default function MaterialList() {
-
+    var recipe_ids = JSON.parse(localStorage.getItem("select_key"));
     const navigate = useNavigate();   //遷移のやつだよ
 
     const [selected, setSelected] = useState(null);     //アコーディオンリスト用
@@ -144,7 +144,19 @@ export default function MaterialList() {
     // ]
 
     //材料JSON取得
-    var { data, _loading, _error } = useMenuData(`https://makeck.mattuu.com/api/materials`)
+var { data, _loading, _error } = useMenuData(
+      `https://dev-makeck.mattuu.com//chart/sermaterials`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "recipe_ids": recipe_ids
+        }),
+      }
+    )    
+    
     var material = data ? data : [];
     console.log(material);
 
