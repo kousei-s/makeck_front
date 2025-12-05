@@ -10,15 +10,27 @@ import _useVoice from '../hooks/useVoice';               // 音声認識
 import { useEffect, useRef, useState } from 'react';
 
 function CookProcess() {
+    var recipe_ids = JSON.parse(localStorage.getItem("select_key"));
     const navigate = useNavigate();                     // 遷移用インスタンス
     const dialogRef = useRef(null);                     // ダイアログ描画
 
     // メニューデータ取得 (4品分献立、カテゴリー*3)
     // const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart");
-    const { data, loading, error } = useMenuData("https://makeck.mattuu.com/api/chart2");
-    const { data: _syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
-    const { data: _syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
-    const { data: _sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
+    const { data, loading, error } = useMenuData(
+      "https://dev-makeck.mattuu.com/chart/genchart",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "recipe_ids": recipe_ids,
+        }),
+      }
+    );
+    // const { data: _syusyoku, loading: syusyokuLoading, error: syusyokuError } = useMenuData("https://makeck.mattuu.com/api/syusyoku");
+    // const { data: _syusai, loading: syusaiLoading, error: syusaiError } = useMenuData("https://makeck.mattuu.com/api/syusai");
+    // const { data: _sirumono, loading: sirumonoLoading, error: sirumonoError } = useMenuData("https://makeck.mattuu.com/api/sirumono");
     const menus = data ? data : "";
     console.log(`menus : \n`, menus);
 
@@ -40,7 +52,6 @@ function CookProcess() {
     // }, []);
 
     
-
     var selectImage = JSON.parse(localStorage.getItem("select_image"));
 
     // チャート用データ整形
@@ -50,8 +61,8 @@ function CookProcess() {
     console.log(chartData)
 
     // エラーチェック用変数 (読み込み、エラー)
-    var loadState = loading || syusyokuLoading || syusaiLoading || sirumonoLoading;
-    var errorState = error || syusyokuError || syusaiError || sirumonoError || chartError;
+    // var loadState = loading || syusyokuLoading || syusaiLoading || sirumonoLoading;
+    // var errorState = error || syusyokuError || syusaiError || sirumonoError || chartError;
 
     
     // ルート配列の更新処理
@@ -112,33 +123,33 @@ function CookProcess() {
     };
 
     // エラー発生時
-    if (errorState) {
-        return (
-            <div className='App noScroll'>
-                <header>
-                    {/* 戻るボタン */}
-                    <img src={images.backBtn} alt="戻るアイコン" onClick={() => navigate('/MaterialList')} />
-                    <div id='pageTitle'>調理手順</div>
-                </header>
-                <main>
-                <h1 id='message'>{error.message}</h1>
-                </main>
-            </div>
-        )
-    }
+    // if (errorState) {
+    //     return (
+    //         <div className='App noScroll'>
+    //             <header>
+    //                 {/* 戻るボタン */}
+    //                 <img src={images.backBtn} alt="戻るアイコン" onClick={() => navigate('/MaterialList')} />
+    //                 <div id='pageTitle'>調理手順</div>
+    //             </header>
+    //             <main>
+    //             <h1 id='message'>{error.message}</h1>
+    //             </main>
+    //         </div>
+    //     )
+    // }
 
-    // 読み込み時
-    if (loadState) {
-        return (
-            <div className='App noScroll'>
-                <header>
-                    {/* 戻るボタン */}
-                    <img src={images.backBtn} alt="戻るアイコン" onClick={() => navigate('/MaterialList')} />
-                    <div id='pageTitle'>調理手順</div>
-                </header>
-            </div>
-        )
-    }
+    // // 読み込み時
+    // if (loadState) {
+    //     return (
+    //         <div className='App noScroll'>
+    //             <header>
+    //                 {/* 戻るボタン */}
+    //                 <img src={images.backBtn} alt="戻るアイコン" onClick={() => navigate('/MaterialList')} />
+    //                 <div id='pageTitle'>調理手順</div>
+    //             </header>
+    //         </div>
+    //     )
+    // }
 
     // 正常時
     return (
