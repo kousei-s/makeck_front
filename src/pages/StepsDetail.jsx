@@ -54,7 +54,9 @@ function StepsDetail() {
     const _menuName = "フランクフルトのソテー";
 
     // 詳細データ取得
-    const { data, _loading, _error } = useMenuData("https://makeck.mattuu.com/api/info");
+    const { data, _loading, _error } = useMenuData(
+      `https://dev-makeck.mattuu.com/recipe/${id}`
+    );
     const _detail = data;
 
     const { _transcript, _listening, _resetTranscript, _startListening, _stopListening } = useVoice();
