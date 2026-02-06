@@ -1,8 +1,6 @@
-# React + Vite
+### MakeCK (めいくっく)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 概要
+主食主菜副菜汁物の４品を選択するだけで４品をまとめて効率よく同時進行できるレシピを作成
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 実行方法
